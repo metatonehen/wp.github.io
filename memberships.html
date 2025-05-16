@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+
+{% block title %}Memberships | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Membership Options</h1>
+        <p>Join our cosmic community and accelerate your spiritual journey</p>
+    </div>
+</section>
+
+<section class="cube-portal-section">
+    <div class="container">
+        <div class="sacred-geometry-container" style="position: relative; margin-bottom: 40px;">
+            <div class="flower-of-life" style="position: absolute; max-width: 350px; left: 50%; transform: translateX(-50%);">
+                <img src="{{ url_for('static', filename='images/flower_of_life_enhanced.svg') }}" alt="Flower of Life">
+            </div>
+            <div class="metatron-cube" style="position: relative; z-index: 2; max-width: 300px; margin: 0 auto;">
+                <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="memberships-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="membership-card platinum">
+                    <div class="membership-header">
+                        <h2>Platinum</h2>
+                        <div class="price">
+                            <span class="amount">$29.99</span>
+                            <span class="period">/ month</span>
+                        </div>
+                    </div>
+                    <div class="membership-content">
+                        <div class="benefits">
+                            <h3>Membership Benefits</h3>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>15% discount on all 1-on-1 sessions</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>10% discount on all courses</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Access to recorded group meditations library</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Monthly live group meditation (value: $25)</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Early registration for retreats</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Access to member-only community forum</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Monthly cosmic calendar and energy forecast</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-lg">Join Platinum</a>
+                        <p class="cancel-note">Cancel anytime. No long-term commitment required.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="membership-card electrum premium">
+                    <div class="premium-badge">Premium</div>
+                    <div class="membership-header">
+                        <h2>Electrum</h2>
+                        <div class="price">
+                            <span class="amount">$49.99</span>
+                            <span class="period">/ month</span>
+                        </div>
+                    </div>
+                    <div class="membership-content">
+                        <div class="benefits">
+                            <h3>Membership Benefits</h3>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>25% discount on all 1-on-1 sessions</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>20% discount on all courses</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Full access to meditation and workshop library</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>All monthly live events included for free</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>One free 30-minute 1-on-1 session monthly</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Priority booking for retreats with 15% discount</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Exclusive monthly masterclass on advanced topics</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Personal cosmic calendar with transit notifications</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Quarterly virtual retreat day</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-lg">Join Electrum</a>
+                        <p class="cancel-note">Cancel anytime. No long-term commitment required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="membership-comparison">
+    <div class="container">
+        <h2>Membership Comparison</h2>
+        <div class="table-responsive">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Platinum</th>
+                        <th>Electrum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monthly Cost</td>
+                        <td>$29.99</td>
+                        <td>$49.99</td>
+                    </tr>
+                    <tr>
+                        <td>1-on-1 Session Discount</td>
+                        <td>15%</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td>Course Discount</td>
+                        <td>10%</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Meditation Library</td>
+                        <td><i class="fas fa-check"></i></td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Workshop Library</td>
+                        <td>Limited Access</td>
+                        <td>Full Access</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Live Events</td>
+                        <td>1 Free Event</td>
+                        <td>All Free</td>
+                    </tr>
+                    <tr>
+                        <td>Free 1-on-1 Session</td>
+                        <td>—</td>
+                        <td>1 × 30 min Monthly</td>
+                    </tr>
+                    <tr>
+                        <td>Retreat Discount</td>
+                        <td>10%</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>Exclusive Masterclasses</td>
+                        <td>—</td>
+                        <td><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Cosmic Calendar</td>
+                        <td>Monthly PDF</td>
+                        <td>Personal Interactive</td>
+                    </tr>
+                    <tr>
+                        <td>Virtual Retreat Days</td>
+                        <td>—</td>
+                        <td>Quarterly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="member-testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Our Members Say</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">Being an Electrum member has transformed my spiritual practice. The monthly sessions and exclusive content have accelerated my growth in ways I never imagined.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Daniel K.</div>
+                        <div class="author-title">Electrum Member, 8 months</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">The Platinum membership pays for itself with just two sessions per month. I love having access to the meditation library and monthly group events.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Jessica M.</div>
+                        <div class="author-title">Platinum Member, 1 year</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">I upgraded to Electrum after 3 months and it's been worth every penny. The quarterly virtual retreats alone are worth the membership fee.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Thomas R.</div>
+                        <div class="author-title">Electrum Member, 6 months</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="membership-faq">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="accordion" id="membershipFAQ">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How do I access member benefits after joining?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        After joining, you'll receive an email with login details for your member dashboard. There, you'll find all your benefits, discount codes, and access to the libraries and community forum.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Can I upgrade or downgrade my membership?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        Yes, you can upgrade or downgrade your membership at any time through your member dashboard. Changes take effect at the start of your next billing cycle.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How do I book my free 1-on-1 session with Electrum membership?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        Electrum members receive a special booking code each month that can be used to schedule their free 30-minute session with any practitioner of their choice, subject to availability.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        What happens if I miss a monthly live event?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#membershipFAQ">
+                    <div class="accordion-body">
+                        All monthly live events are recorded and added to the library within 48 hours, so you can watch them at your convenience if you can't attend live.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

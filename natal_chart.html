@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+
+{% block title %}Natal Chart Calculator | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Natal Chart Calculator</h1>
+        <p>Discover your cosmic blueprint</p>
+    </div>
+</section>
+
+<section class="calculator-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="calculator-form">
+                    <h2>Enter Your Birth Details</h2>
+                    <form id="natal-chart-form">
+                        <div class="mb-3">
+                            <label for="birth-name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="birth-name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="birth-date" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="birth-date" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="birth-hour" class="form-label">Birth Hour</label>
+                                <select class="form-select" id="birth-hour" required>
+                                    <option value="" selected disabled>Select hour</option>
+                                    {% for hour in range(0, 24) %}
+                                        <option value="{{ hour }}">{{ '%02d'|format(hour) }}:00</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="birth-minute" class="form-label">Birth Minute</label>
+                                <select class="form-select" id="birth-minute" required>
+                                    <option value="" selected disabled>Select minute</option>
+                                    {% for minute in range(0, 60) %}
+                                        <option value="{{ minute }}">{{ '%02d'|format(minute) }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="birth-city" class="form-label">Birth City</label>
+                            <input type="text" class="form-control" id="birth-city" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="birth-country" class="form-label">Birth Country</label>
+                            <select class="form-select" id="birth-country" required>
+                                <option value="" selected disabled>Select country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <!-- More countries would be added here -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="unknown-birth-time">
+                            <label class="form-check-label" for="unknown-birth-time">
+                                I don't know my birth time
+                            </label>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="chart-type" class="form-label">Chart Type</label>
+                            <select class="form-select" id="chart-type">
+                                <option value="tropical" selected>Tropical (Western)</option>
+                                <option value="sidereal">Sidereal (Vedic)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="house-system" class="form-label">House System</label>
+                            <select class="form-select" id="house-system">
+                                <option value="placidus" selected>Placidus</option>
+                                <option value="whole-sign">Whole Sign</option>
+                                <option value="equal">Equal</option>
+                                <option value="koch">Koch</option>
+                                <option value="campanus">Campanus</option>
+                                <option value="regiomontanus">Regiomontanus</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg">Calculate Natal Chart</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="chart-preview">
+                    <div class="preview-placeholder">
+                        <div class="flower-of-life-bg">
+                            <img src="{{ url_for('static', filename='images/flower_of_life.svg') }}" alt="Flower of Life">
+                        </div>
+                        <div class="chart-message">
+                            <h3>Your Natal Chart Will Appear Here</h3>
+                            <p>Enter your birth details to discover your cosmic blueprint and planetary alignments at the moment of your birth.</p>
+                            <p class="info-note"><i class="fas fa-info-circle"></i> For the most accurate chart, please include your exact birth time.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="chart-result" class="d-none">
+                        <!-- Chart results will be displayed here via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="chart-info-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <h3>What Is a Natal Chart?</h3>
+                    <p>Your natal chart, also called a birth chart, is a map of where all the planets were in their journey around the Sun at the exact moment you were born. Think of it as a cosmic snapshot of the universe when you took your first breath.</p>
+                    <p>This celestial blueprint reveals your strengths, weaknesses, opportunities, and challenges. It provides insights into your personality, relationships, career path, and spiritual growth.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <h3>What You'll Discover</h3>
+                    <ul>
+                        <li><strong>Sun Sign:</strong> Your core essence and identity</li>
+                        <li><strong>Moon Sign:</strong> Your emotional nature and instinctive reactions</li>
+                        <li><strong>Rising Sign (Ascendant):</strong> How you present yourself to the world</li>
+                        <li><strong>Planetary Positions:</strong> The unique influences shaping your life</li>
+                        <li><strong>Houses:</strong> Areas of life where these energies express themselves</li>
+                        <li><strong>Aspects:</strong> Relationships between planets that reveal harmonies and tensions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="session-promo">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3>Want a Professional Interpretation?</h3>
+                    <p>While our calculator provides an accurate chart, the true magic happens when a skilled astrologer interprets the nuances of your cosmic blueprint.</p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="{{ url_for('sessions') }}#astrology" class="btn btn-primary">Book an Astrology Session</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const natalChartForm = document.getElementById('natal-chart-form');
+        const unknownBirthTime = document.getElementById('unknown-birth-time');
+        const birthHour = document.getElementById('birth-hour');
+        const birthMinute = document.getElementById('birth-minute');
+        const chartResult = document.getElementById('chart-result');
+        const previewPlaceholder = document.querySelector('.preview-placeholder');
+        
+        // Toggle birth time fields based on checkbox
+        unknownBirthTime.addEventListener('change', function() {
+            birthHour.disabled = this.checked;
+            birthMinute.disabled = this.checked;
+            
+            if (this.checked) {
+                birthHour.value = '';
+                birthMinute.value = '';
+            }
+        });
+        
+        // Handle form submission
+        natalChartForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate chart calculation
+            simulateChartCalculation();
+        });
+        
+        function simulateChartCalculation() {
+            // Show loading state
+            previewPlaceholder.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div><p class="text-center">Calculating your chart...</p>';
+            
+            // Simulate API call delay
+            setTimeout(function() {
+                // In a real implementation, this would be replaced with actual API integration
+                chartResult.innerHTML = `
+                    <div class="chart-header">
+                        <h3>${document.getElementById('birth-name').value}'s Natal Chart</h3>
+                        <p>Born on ${formatDate(document.getElementById('birth-date').value)} in ${document.getElementById('birth-city').value}, ${document.getElementById('birth-country').options[document.getElementById('birth-country').selectedIndex].text}</p>
+                    </div>
+                    <div class="chart-image">
+                        <div class="chart-placeholder">
+                            <p class="text-center">This is where your actual chart would be displayed.</p>
+                            <p class="text-center">In the WordPress implementation, this would connect to an astrology API.</p>
+                        </div>
+                    </div>
+                    <div class="chart-interpretation">
+                        <div class="interpretation-section">
+                            <h4>Sun in Aries</h4>
+                            <p>Your core essence is energetic, independent, and pioneering. You have a natural leadership quality and aren't afraid to initiate new projects.</p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h4>Moon in Cancer</h4>
+                            <p>Your emotional nature is sensitive, nurturing, and protective. Home and family are important to your sense of security.</p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h4>Ascendant in Libra</h4>
+                            <p>You present yourself as diplomatic, charming, and relationship-oriented. You value harmony and fairness in your interactions.</p>
+                        </div>
+                        <div class="disclaimer">
+                            <p><strong>Note:</strong> This is a simplified interpretation. For a complete analysis, consider booking a session with one of our astrologers.</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Show the result and hide placeholder
+                chartResult.classList.remove('d-none');
+                previewPlaceholder.classList.add('d-none');
+            }, 2000);
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString(undefined, options);
+        }
+    });
+</script>
+{% endblock %}

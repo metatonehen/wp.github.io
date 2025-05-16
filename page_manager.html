@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestor de Páginas - METATONEHEN{% endblock %}
+
+{% block content %}
+<section class="page-manager-section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="admin-header">
+                    <h1>Gestor de Páginas</h1>
+                    <div class="admin-actions">
+                        <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-primary me-2">Panel Principal</a>
+                        <a href="{{ url_for('visual_editor') }}" class="btn btn-success me-2">Editor Visual</a>
+                        <a href="{{ url_for('media_manager') }}" class="btn btn-primary me-2">Gestor de Archivos</a>
+                        <a href="{{ url_for('new_page') }}" class="btn btn-success me-2">Nueva Página</a>
+                        <a href="{{ url_for('admin_logout') }}" class="btn btn-outline-primary">Logout</a>
+                    </div>
+                </div>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Páginas Creadas</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if pages %}
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>URL</th>
+                                            <th>Estado</th>
+                                            <th>Fecha Actualización</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for page in pages %}
+                                            <tr>
+                                                <td>{{ page.name }}</td>
+                                                <td>
+                                                    <a href="{{ url_for('view_page', slug=page.slug) }}" target="_blank">
+                                                        /p/{{ page.slug }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {% if page.is_published %}
+                                                        <span class="badge bg-success">Publicada</span>
+                                                    {% else %}
+                                                        <span class="badge bg-secondary">Borrador</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ page.updated_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href="{{ url_for('edit_page', page_id=page.id) }}" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-edit"></i> Editar
+                                                        </a>
+                                                        <form action="{{ url_for('delete_page', page_id=page.id) }}" method="POST" class="d-inline delete-form">
+                                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                                <i class="fas fa-trash"></i> Eliminar
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="no-pages">
+                                <p>No has creado ninguna página todavía. Crea tu primera página haciendo clic en el botón "Nueva Página".</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .page-manager-section {
+        padding: 50px 0;
+    }
+    
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .card {
+        border: 1px solid rgba(201, 172, 72, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid rgba(201, 172, 72, 0.3);
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        color: #333;
+    }
+    
+    .btn-primary {
+        background-color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-primary:hover {
+        background-color: #b89b3d;
+        border-color: #b89b3d;
+    }
+    
+    .btn-outline-primary {
+        color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: #C9AC48;
+        color: white;
+    }
+    
+    .no-pages {
+        text-align: center;
+        padding: 40px 0;
+        color: #888;
+    }
+    
+    .table .badge {
+        font-weight: 500;
+    }
+    
+    .table .btn-group .btn {
+        margin-right: 5px;
+    }
+    
+    .delete-form {
+        display: inline-block;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Confirmar eliminar
+        const deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                if (!confirm('¿Estás seguro de que quieres eliminar esta página? Esta acción no se puede deshacer.')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

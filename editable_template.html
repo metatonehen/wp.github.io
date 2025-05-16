@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METATONEHEN - Plantilla Editable</title>
+    
+    <!-- Estilos CSS integrados para facilitar la edición -->
+    <style>
+        :root {
+            --dark: #0a0722;
+            --indigo: #4A1A9E;
+            --indigo-dark: #2A0A5D;
+            --violet-light: #a675c8;
+            --gold: #D4AF37;
+            --gold-light: #F5D76A;
+            --off-white: #F5F5F5;
+            --white: #FFFFFF;
+            --section-padding: 80px 0;
+            --heading-font: 'Montserrat', sans-serif;
+            --body-font: 'Lato', sans-serif;
+        }
+        
+        /* Estilos generales */
+        body {
+            background-color: var(--dark);
+            color: var(--off-white);
+            font-family: var(--body-font);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col {
+            flex: 1;
+            padding: 0 15px;
+            min-width: 300px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--gold-light);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: var(--heading-font);
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--dark);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        .section-title {
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title p {
+            color: var(--violet-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .site-header {
+            padding: 15px 0;
+            position: relative;
+            z-index: 100;
+            background-color: rgba(10, 7, 34, 0.8);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .navbar-brand h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0;
+            background: linear-gradient(to right, var(--gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .greek-text {
+            font-family: var(--body-font);
+            font-style: italic;
+            color: var(--violet-light);
+            margin-bottom: 0;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            margin: 0 5px;
+        }
+        
+        .nav-link {
+            color: var(--off-white);
+            font-family: var(--heading-font);
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--gold);
+        }
+        
+        /* Menú móvil */
+        .navbar-toggler {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 12px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+            }
+            
+            .navbar-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(10, 7, 34, 0.95);
+                padding: 20px 0;
+                border-top: 1px solid var(--gold);
+            }
+            
+            .navbar-nav.show {
+                display: flex;
+            }
+            
+            .nav-item {
+                margin: 5px 0;
+            }
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        
+        .hero-content .greek-text {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-content .lead {
+            font-size: 1.2rem;
+            color: var(--violet-light);
+            margin-bottom: 30px;
+        }
+        
+        .sacred-geometry-container {
+            position: relative;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .sacred-geometry-image {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        /* Cubes Section (Portales) */
+        .cubes-section {
+            padding: var(--section-padding);
+        }
+        
+        .portal-cube {
+            position: relative;
+            height: 300px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(42, 10, 93, 0.7) 0%, rgba(74, 26, 158, 0.7) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            padding: 30px;
+        }
+        
+        .portal-cube:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .cube-content h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .cube-vertices {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .vertex {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .vertex:hover {
+            background-color: var(--gold);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+        
+        .portal-link {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--gold);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .portal-link:hover {
+            background-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        /* Courses Section */
+        .featured-courses-section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+        
+        .course-card {
+            background: linear-gradient(135deg, rgba(42, 10, 93, 0.7) 0%, rgba(74, 26, 158, 0.7) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .course-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .course-info {
+            padding: 20px;
+        }
+        
+        .course-info h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .course-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .course-category, .course-duration {
+            color: var(--violet-light);
+        }
+        
+        .course-description {
+            color: var(--off-white);
+            margin-bottom: 20px;
+        }
+        
+        .course-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: var(--section-padding);
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, rgba(42, 10, 93, 0.7) 0%, rgba(74, 26, 158, 0.7) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            min-height: 350px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: var(--indigo);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold);
+            font-size: 2rem;
+        }
+        
+        .service-card h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            margin-bottom: 20px;
+            color: var(--off-white);
+        }
+        
+        /* Membership Section */
+        .membership-section {
+            padding: var(--section-padding);
+        }
+        
+        .membership-card {
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            min-height: 420px;
+        }
+        
+        .membership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .membership-card.platinum {
+            background: linear-gradient(135deg, rgba(42, 10, 93, 0.8) 0%, rgba(74, 26, 158, 0.8) 100%);
+        }
+        
+        .membership-card.electrum {
+            background: linear-gradient(135deg, rgba(100, 50, 150, 0.8) 0%, rgba(74, 26, 158, 0.8) 100%);
+        }
+        
+        .membership-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23a675c8' stroke-width='1' fill='none' opacity='0.2'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .membership-title {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .membership-price {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .membership-price span {
+            font-size: 1rem;
+            vertical-align: super;
+            color: var(--violet-light);
+        }
+        
+        .membership-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px;
+            position: relative;
+        }
+        
+        .membership-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(166, 117, 200, 0.2);
+        }
+        
+        .membership-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: var(--section-padding);
+            background-color: rgba(42, 10, 93, 0.3);
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(42, 10, 93, 0.7) 0%, rgba(74, 26, 158, 0.7) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            font-style: italic;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+        
+        .testimonial-content:before, .testimonial-content:after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--gold);
+            position: absolute;
+        }
+        
+        .testimonial-content:before {
+            left: 0;
+            top: -10px;
+        }
+        
+        .testimonial-content:after {
+            right: 0;
+            bottom: -10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--gold);
+            margin: 0 0 5px;
+        }
+        
+        .author-info p {
+            color: var(--violet-light);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .site-footer {
+            padding: 60px 0 30px;
+            background-color: rgba(10, 7, 34, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        
+        .footer-about p {
+            color: var(--violet-light);
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--violet-light);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .footer-contact {
+            color: var(--violet-light);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            color: var(--gold);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(166, 117, 200, 0.2);
+            text-align: center;
+            color: var(--violet-light);
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--indigo);
+            border-radius: 50%;
+            margin: 0 5px;
+            color: var(--gold);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--indigo);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .col {
+                flex: 0 0 50%;
+                margin-bottom: 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .col {
+                flex: 0 0 100%;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-container">
+                <a class="navbar-brand" href="#">
+                    <h1>METATONEHEN</h1>
+                    <p class="greek-text">μετὰ τὸ νέἕν</p>
+                </a>
+                <button class="navbar-toggler" onclick="toggleMenu()">
+                    ☰
+                </button>
+                <ul class="navbar-nav" id="navbarNav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sessions">Sesiones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#group-sessions">Sesiones Grupales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#membership">Membresías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="hero-content">
+                        <h1>METATONEHEN</h1>
+                        <p class="greek-text">μετὰ τὸ νέἕν</p>
+                        <p class="lead">Descubre la sabiduría antigua a través de una educación espiritual moderna. 
+                        Aprende sobre astrología, diseño humano, geometría sagrada y más.</p>
+                        <div class="hero-buttons">
+                            <a href="#courses" class="btn btn-primary">Explorar Cursos</a>
+                            <a href="#membership" class="btn btn-outline">Membresías</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="sacred-geometry-container">
+                        <img src="/static/images/metatron_cube_enhanced.svg" alt="Cubo de Metatrón" class="sacred-geometry-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cubes Section (Portales) -->
+    <section class="cubes-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Portales de Conocimiento</h2>
+                <p>Explora nuestros portales temáticos y descubre contenido especializado para cada área de tu vida.</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="portal-cube">
+                        <div class="cube-content">
+                            <h3>Educación Espiritual</h3>
+                            <div class="cube-vertices">
+                                <span class="vertex vertex-soul">Alma</span>
+                                <span class="vertex vertex-mind">Mente</span>
+                                <span class="vertex vertex-body">Cuerpo</span>
+                                <span class="vertex vertex-love">Amor</span>
+                                <span class="vertex vertex-health">Salud</span>
+                                <span class="vertex vertex-money">Abundancia</span>
+                            </div>
+                            <a href="#courses" class="portal-link">Explorar Cursos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portal-cube">
+                        <div class="cube-content">
+                            <h3>Sesiones Personalizadas</h3>
+                            <div class="cube-vertices">
+                                <span class="vertex vertex-soul">Carta Natal</span>
+                                <span class="vertex vertex-mind">Diseño Humano</span>
+                                <span class="vertex vertex-body">Coaching</span>
+                                <span class="vertex vertex-love">Relaciones</span>
+                                <span class="vertex vertex-health">Bienestar</span>
+                                <span class="vertex vertex-money">Propósito</span>
+                            </div>
+                            <a href="#sessions" class="portal-link">Agendar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses Section -->
+    <section class="featured-courses-section" id="courses">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Cursos Destacados</h2>
+                <p>Aprende a tu propio ritmo con nuestros cursos de alta calidad impartidos por expertos en cada área.</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="attached_assets/Cube-Small.jpeg" alt="Geometría Sagrada">
+                        </div>
+                        <div class="course-info">
+                            <h3>Geometría Sagrada</h3>
+                            <div class="course-details">
+                                <div class="course-category">Espiritualidad</div>
+                                <div class="course-duration">8 semanas</div>
+                            </div>
+                            <p class="course-description">Descubre los patrones geométricos que gobiernan el universo y cómo podemos aplicarlos en nuestra vida diaria para vivir en armonía con la creación.</p>
+                            <div class="course-price">$297 USD</div>
+                            <a href="#" class="btn btn-outline">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="attached_assets/playades.webp" alt="Astrología Evolutiva">
+                        </div>
+                        <div class="course-info">
+                            <h3>Astrología Evolutiva</h3>
+                            <div class="course-details">
+                                <div class="course-category">Astrología</div>
+                                <div class="course-duration">12 semanas</div>
+                            </div>
+                            <p class="course-description">Aprende a interpretar tu carta natal desde una perspectiva evolutiva, descubriendo tu propósito de vida y cómo los planetas influyen en tu camino.</p>
+                            <div class="course-price">$397 USD</div>
+                            <a href="#" class="btn btn-outline">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="attached_assets/flower-of-life.jpeg" alt="Diseño Humano">
+                        </div>
+                        <div class="course-info">
+                            <h3>Diseño Humano Básico</h3>
+                            <div class="course-details">
+                                <div class="course-category">Autoconocimiento</div>
+                                <div class="course-duration">6 semanas</div>
+                            </div>
+                            <p class="course-description">Descubre la síntesis perfecta entre astrología, I Ching, Cábala y física cuántica que revela tu diseño único y cómo tomar decisiones correctas.</p>
+                            <div class="course-price">$247 USD</div>
+                            <a href="#" class="btn btn-outline">Ver Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 30px;">
+                <a href="#" class="btn btn-primary">Ver Todos los Cursos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="sessions">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Sesiones Individuales</h2>
+                <p>Agenda una sesión personalizada para profundizar en tu autoconocimiento con la guía de nuestros expertos.</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="service-card">
+                        <div class="service-icon">★</div>
+                        <h3>Lectura de Carta Natal</h3>
+                        <p>Descubre tu propósito de vida, fortalezas, desafíos y potencial a través de tu carta natal astrológica completa.</p>
+                        <div class="course-price">$150 USD</div>
+                        <a href="#" class="btn btn-outline">Agendar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <div class="service-icon">⬡</div>
+                        <h3>Análisis de Diseño Humano</h3>
+                        <p>Conoce tu tipo energético, autoridad interna, perfil y cómo tomar decisiones alineadas con tu naturaleza única.</p>
+                        <div class="course-price">$180 USD</div>
+                        <a href="#" class="btn btn-outline">Agendar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <div class="service-icon">☯</div>
+                        <h3>Coaching Espiritual</h3>
+                        <p>Recibe guía personalizada para superar bloqueos, reconectar con tu propósito y avanzar en tu camino espiritual.</p>
+                        <div class="course-price">$120 USD</div>
+                        <a href="#" class="btn btn-outline">Agendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group Sessions Section -->
+    <section class="services-section" id="group-sessions">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Sesiones Grupales</h2>
+                <p>Participa en experiencias transformadoras junto a una comunidad de personas con intereses similares.</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="service-card">
+                        <div class="service-icon">🔥</div>
+                        <h3>Ceremonia de Luna Llena</h3>
+                        <p>Conéctate con la energía lunar en una ceremonia grupal para manifestar intenciones y liberar lo que ya no te sirve.</p>
+                        <div class="course-price">$50 USD</div>
+                        <a href="#" class="btn btn-outline">Reservar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <div class="service-icon">🧘</div>
+                        <h3>Meditación Guiada</h3>
+                        <p>Sesiones semanales de meditación guiada para conectar con tu centro, reducir el estrés y aumentar tu bienestar general.</p>
+                        <div class="course-price">$30 USD</div>
+                        <a href="#" class="btn btn-outline">Reservar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <div class="service-icon">⭐</div>
+                        <h3>Taller de Manifestación</h3>
+                        <p>Aprende técnicas prácticas para manifestar tus deseos y crear la vida que sueñas a través de principios universales.</p>
+                        <div class="course-price">$75 USD</div>
+                        <a href="#" class="btn btn-outline">Reservar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section class="membership-section" id="membership">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Membresías</h2>
+                <p>Obtén acceso privilegiado a todos nuestros recursos con descuentos exclusivos para miembros.</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="membership-card platinum">
+                        <h3 class="membership-title">Membresía Platino</h3>
+                        <div class="membership-price">$99<span>/mes</span></div>
+                        <ul class="membership-features">
+                            <li>Acceso completo a todos los cursos</li>
+                            <li>30% de descuento en sesiones individuales</li>
+                            <li>Acceso a eventos exclusivos</li>
+                            <li>2 sesiones individuales gratuitas al mes</li>
+                            <li>Acceso a la biblioteca digital completa</li>
+                            <li>Comunidad privada de miembros</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Suscribirse</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="membership-card electrum">
+                        <h3 class="membership-title">Membresía Electrum</h3>
+                        <div class="membership-price">$49<span>/mes</span></div>
+                        <ul class="membership-features">
+                            <li>Acceso a 5 cursos por mes</li>
+                            <li>15% de descuento en sesiones individuales</li>
+                            <li>1 sesión individual gratuita al mes</li>
+                            <li>Acceso a la biblioteca digital básica</li>
+                            <li>Comunidad privada de miembros</li>
+                            <li>Webinars mensuales exclusivos</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Suscribirse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Testimonios</h2>
+                <p>Lo que nuestra comunidad dice sobre su experiencia con nosotros.</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            El curso de Geometría Sagrada transformó completamente mi percepción del universo. Ahora veo patrones y conexiones en todo lo que me rodea. Ha sido una experiencia verdaderamente iluminadora.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>María González</h4>
+                                <p>Estudiante de Geometría Sagrada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            Mi lectura de carta natal fue increíblemente precisa. Me ayudó a comprender patrones que he repetido toda mi vida y me dio claridad sobre mi camino. Altamente recomendado para cualquier persona en búsqueda de respuestas.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Carlos Martínez</h4>
+                                <p>Cliente de Sesiones Individuales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            La membresía Platino ha sido la mejor inversión en mi desarrollo personal. El acceso a todos los cursos y las sesiones individuales me han dado las herramientas que necesitaba para mi crecimiento espiritual.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Laura Sánchez</h4>
+                                <p>Miembro Platino</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="services-section" id="contact">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Contacto</h2>
+                <p>Estamos aquí para responder tus preguntas y ayudarte en tu camino.</p>
+            </div>
+            <div class="row">
+                <div class="col" style="flex: 0 0 100%; max-width: 600px; margin: 0 auto;">
+                    <div class="service-card" style="min-height: auto;">
+                        <form id="contact-form">
+                            <div style="margin-bottom: 20px;">
+                                <label for="name" style="display: block; margin-bottom: 5px; color: var(--gold);">Nombre</label>
+                                <input type="text" id="name" name="name" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--indigo); background-color: rgba(74, 26, 158, 0.2); color: var(--white);">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label for="email" style="display: block; margin-bottom: 5px; color: var(--gold);">Email</label>
+                                <input type="email" id="email" name="email" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--indigo); background-color: rgba(74, 26, 158, 0.2); color: var(--white);">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label for="subject" style="display: block; margin-bottom: 5px; color: var(--gold);">Asunto</label>
+                                <input type="text" id="subject" name="subject" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--indigo); background-color: rgba(74, 26, 158, 0.2); color: var(--white);">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label for="message" style="display: block; margin-bottom: 5px; color: var(--gold);">Mensaje</label>
+                                <textarea id="message" name="message" rows="5" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--indigo); background-color: rgba(74, 26, 158, 0.2); color: var(--white);"></textarea>
+                            </div>
+                            <div style="text-align: center;">
+                                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer-logo">
+                        <h2>METATONEHEN</h2>
+                        <p class="greek-text">μετὰ τὸ νέἕν</p>
+                    </div>
+                    <div class="footer-about">
+                        <p>Educación espiritual para el nuevo paradigma. Descubre la sabiduría antigua a través de una perspectiva moderna.</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><span>f</span></a>
+                        <a href="#"><span>t</span></a>
+                        <a href="#"><span>ig</span></a>
+                        <a href="#"><span>yt</span></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4 class="footer-title">Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#courses">Cursos</a></li>
+                        <li><a href="#sessions">Sesiones</a></li>
+                        <li><a href="#group-sessions">Sesiones Grupales</a></li>
+                        <li><a href="#membership">Membresías</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4 class="footer-title">Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Carta Natal</a></li>
+                        <li><a href="#">Diseño Humano</a></li>
+                        <li><a href="#">Coaching Espiritual</a></li>
+                        <li><a href="#">Ceremonias</a></li>
+                        <li><a href="#">Meditaciones</a></li>
+                        <li><a href="#">Talleres</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4 class="footer-title">Contacto</h4>
+                    <div class="footer-contact">
+                        <p><span>📧</span> info@metatonehen.com</p>
+                        <p><span>📱</span> +1 (555) 123-4567</p>
+                        <p><span>🌎</span> www.metatonehen.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 METATONEHEN. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleMenu() {
+            const navbarNav = document.getElementById('navbarNav');
+            navbarNav.classList.toggle('show');
+        }
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Cerrar menú móvil después de hacer clic
+                const navbarNav = document.getElementById('navbarNav');
+                if (navbarNav.classList.contains('show')) {
+                    navbarNav.classList.remove('show');
+                }
+            });
+        });
+        
+        // Formulario de contacto
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu mensaje! Te responderemos lo antes posible.');
+                contactForm.reset();
+            });
+        }
+        
+        // Simular carga de página
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

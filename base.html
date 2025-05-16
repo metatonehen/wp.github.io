@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}METATONEHEN{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal-styles.css') }}">
+    
+    {% if session.get('edit_mode') %}
+    <!-- Editor CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inline-editor.css') }}">
+    {% endif %}
+    
+    <!-- Selector de idioma CSS -->
+    <style>
+        .language-selector {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+        }
+        
+        .connected-planet-icon {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9Imd1bG9iZSIgY3g9IjEwMCIgY3k9IjEwMCIgcj0iOTAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDQ3YWZlIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDIyYzg5Ii8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5MCIgZmlsbD0idXJsKCNnbG9iZSkiLz48cGF0aCBkPSJNNDAgNjBjMjAgLTEwIDQwIC0xMCA2MCAwYzIwIDEwIDQwIDEwIDYwIDBNMzUgMTAwYzIwIC0xMCA0NSAtMTEgNjUgLTFjMjAgMTAgNDUgMTAgNjUgME0zNSAxNDBjMjAgLTEwIDQ1IC0xMSA2NSAtMWMyMCAxMCA0NSAxMCA2NSAwIiBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNiIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjAiIHI9IjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjUzIiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iOTAiIGN5PSI1OCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjU1IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTU1IiBjeT0iNjIiIHI9IjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIzNSIgY3k9IjEwMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iOTUiIHI9IjMiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI5MCIgY3k9IjEwMCIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9Ijk3IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTA0IiByPSIyIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzUiIGN5PSIxNDAiIHI9IjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjEzNSIgcj0iMyIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjkwIiBjeT0iMTQwIiByPSIyIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iMTM3IiByPSIzIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTQ0IiByPSIyIiBmaWxsPSIjZmZmIi8+PC9zdmc+');
+            background-size: contain;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(100, 200, 255, 0.6);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 12px rgba(100, 200, 255, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 18px rgba(100, 255, 255, 0.8);
+            }
+        }
+        
+        .connected-planet-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .connected-planet-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
+        }
+        
+        .current-lang-indicator {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #212121;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #fff;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(20, 20, 35, 0.95);
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            min-width: 170px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-origin: top right;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .language-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+        
+        .language-option:last-child {
+            margin-bottom: 0;
+        }
+        
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(-2px);
+        }
+        
+        .language-option.active {
+            background: #C9AC48;
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .flag-icon {
+            width: 26px;
+            height: 18px;
+            margin-right: 12px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .flag-en {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjM1IDY1MCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KPGRlZnM+DQo8ZyBpZD0idW5pb24iPg0KPHVzZSB5PSItLjIxNiIgeGxpbms6aHJlZj0iI3g0Ii8+DQo8dXNlIHhsaW5rOmhyZWY9IiN4NCIvPg0KPHVzZSB5PSIuMjE2IiB4bGluazpocmVmPSIjczYiLz4NCjwvZz4NCjxnIGlkPSJ4NCI+DQo8dXNlIHhsaW5rOmhyZWY9IiNzNiIvPg0KPHVzZSB5PSIuMDU0IiB4bGluazpocmVmPSIjczUiLz4NCjx1c2UgeT0iLjEwOCIgeGxpbms6aHJlZj0iI3M2Ii8+DQo8dXNlIHk9Ii4xNjIiIHhsaW5rOmhyZWY9IiNzNSIvPg0KPC9nPg0KPGcgaWQ9InM1Ij4NCjx1c2UgeD0iLS4yNTIiIHhsaW5rOmhyZWY9IiNzdGFyIi8+DQo8dXNlIHg9Ii0uMTI2IiB4bGluazpocmVmPSIjc3RhciIvPg0KPHVzZSB4bGluazpocmVmPSIjc3RhciIvPg0KPHVzZSB4PSIuMTI2IiB4bGluazpocmVmPSIjc3RhciIvPg0KPHVzZSB4PSIuMjUyIiB4bGluazpocmVmPSIjc3RhciIvPg0KPC9nPg0KPGcgaWQ9InM2Ij4NCjx1c2UgeD0iLS4wNjMiIHhsaW5rOmhyZWY9IiNzNSIvPg0KPHVzZSB4PSIuMzE1IiB4bGluazpocmVmPSIjc3RhciIvPg0KPC9nPg0KPGcgaWQ9InN0YXIiPg0KPHVzZSB4bGluazpocmVmPSIjcHQiIHRyYW5zZm9ybT0ibWF0cml4KC0uODA5IC0uNTg4IC41ODggLS44MDkgMCAwKSIvPg0KPHVzZSB4bGluazpocmVmPSIjcHQiIHRyYW5zZm9ybT0ibWF0cml4KC0uMzA5IC0uOTUxIC45NTEgLS4zMDkgMCAwKSIvPg0KPHVzZSB4bGluazpocmVmPSIjcHQiLz4NCjx1c2UgeGxpbms6aHJlZj0iI3B0IiB0cmFuc2Zvcm09Im1hdHJpeCguMzA5IC0uOTUxIC45NTEgLjMwOSAwIDApIi8+DQo8dXNlIHhsaW5rOmhyZWY9IiNwdCIgdHJhbnNmb3JtPSJtYXRyaXgoLjgwOSAtLjU4OCAuNTg4IC44MDkgMCAwKSIvPg0KPC9nPg0KPHBhdGggZmlsbD0iI2ZmZiIgaWQ9InB0IiBkPSJNMCwtMVYxSC41IiB0cmFuc2Zvcm09InJvdGF0ZSgzNiAwLDApIi8+DQo8L2RlZnM+DQo8cGF0aCBmaWxsPSIjMDAwMDVlIiBkPSJtMCwwaDEyMzV2NjUwSDB6Ii8+DQo8ZyBmaWxsPSIjZmZmIj4NCjxwYXRoIGQ9Im0wLDBoMTIzNXY1MEgweiIvPg0KPHBhdGggZD0ibTAsMTAwaDEyMzV2NTBIMHoiLz4NCjxwYXRoIGQ9Im0wLDIwMGgxMjM1djUwSDB6Ii8+DQo8cGF0aCBkPSJtMCwzMDBoMTIzNXY1MEgweiIvPg0KPHBhdGggZD0ibTAsNDAwaDEyMzV2NTBIMHoiLz4NCjxwYXRoIGQ9Im0wLDUwMGgxMjM1djUwSDB6Ii8+DQo8cGF0aCBkPSJtMCw2MDBoMTIzNXY1MEgweiIvPg0KPC9nPg0KPHBhdGggZmlsbD0iI2NmMTQyYiIgZD0ibTAsMGg0OTR2MzUwSDB6Ii8+DQo8ZyBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09Im1hdHJpeCg2NTAgMCAwIDY1MCAyNDcgMTc1KSI+DQo8dXNlIHhsaW5rOmhyZWY9IiN1bmlvbiIvPg0KPC9nPg0KPC9zdmc+');
+        }
+        
+        .flag-es {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NTAgNTAwIj4NCjxwYXRoIGZpbGw9IiNjNjBiMWUiIGQ9Im0wLDBoNzUwdjUwMEgweiIvPg0KPHBhdGggZmlsbD0iI2ZmYzQwMCIgZD0ibTAsMTI1aDc1MHYyNTBIMHoiLz4NCjwvc3ZnPg==');
+        }
+        
+        .flag-it {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgMTAwIj4NCjxwYXRoIGZpbGw9IiMwMDk1NDYiIGQ9Im0wLDBoNTB2MTAwSDB6Ii8+DQo8cGF0aCBmaWxsPSIjZmZmIiBkPSJtNTAsMGg1MHYxMDBINTB6Ii8+DQo8cGF0aCBmaWxsPSIjY2UyYjM3IiBkPSJtMTAwLDBoNTB2MTAwSDEwMHoiLz4NCjwvc3ZnPg==');
+        }
+        
+        .flag-pt {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj4NCjxwYXRoIGZpbGw9IiMwNTZiMTAiIGQ9Im0wLDBoNjAwdjQwMEgweiIvPg0KPHBhdGggZmlsbD0iI2RmMDEwMCIgZD0ibTAsMGgyNDB2NDAwSDB6Ii8+DQo8L3N2Zz4=');
+        }
+        
+        .flag-de {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1IDMiPg0KPHBhdGggZD0ibTAsMGg1djFIMHoiLz4NCjxwYXRoIGZpbGw9IiNkMDAiIGQ9Im0wLDFoNXYxSDB6Ii8+DQo8cGF0aCBmaWxsPSIjZmZjZTAwIiBkPSJtMCwyaDV2MUgweiIvPg0KPC9zdmc+');
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}{% if session.get('edit_mode') %} edit-mode{% endif %}">
+    <!-- Overlay de transición entre páginas -->
+    <div class="page-transition-overlay">
+        <div class="transition-content">
+            <p class="greek-text">μετὰ τὸ νέἕν</p>
+            <div class="sacred-geometry-container">
+                <div class="flower-of-life">
+                    <img src="{{ url_for('static', filename='images/flower_of_life_enhanced.svg') }}" alt="Flower of Life">
+                </div>
+                <div class="metatron-cube">
+                    <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Selector de idioma -->
+    <div class="language-selector">
+        <div class="connected-planet-icon" id="language-toggle">
+            <div class="current-lang-indicator">
+                {% if session.get('language') %}{{ session.get('language') }}{% else %}en{% endif %}
+            </div>
+        </div>
+        <div class="language-dropdown" id="language-menu">
+            <a href="{{ url_for('set_language', language='en') }}" class="language-option {% if session.get('language') == 'en' or not session.get('language') %}active{% endif %}">
+                <div class="flag-icon flag-en"></div>
+                <span>English</span>
+            </a>
+            <a href="{{ url_for('set_language', language='es') }}" class="language-option {% if session.get('language') == 'es' %}active{% endif %}">
+                <div class="flag-icon flag-es"></div>
+                <span>Español</span>
+            </a>
+            <a href="{{ url_for('set_language', language='it') }}" class="language-option {% if session.get('language') == 'it' %}active{% endif %}">
+                <div class="flag-icon flag-it"></div>
+                <span>Italiano</span>
+            </a>
+            <a href="{{ url_for('set_language', language='pt') }}" class="language-option {% if session.get('language') == 'pt' %}active{% endif %}">
+                <div class="flag-icon flag-pt"></div>
+                <span>Português</span>
+            </a>
+            <a href="{{ url_for('set_language', language='de') }}" class="language-option {% if session.get('language') == 'de' %}active{% endif %}">
+                <div class="flag-icon flag-de"></div>
+                <span>Deutsch</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="cosmic-background">
+        <div class="stars"></div>
+        <div class="constellations"></div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <h1>METATONEHEN</h1>
+                    <p class="greek-text">μετὰ τὸ νέἕν</p>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('index') }}">
+                                {% if session.get('language') == 'es' %}Inicio
+                                {% elif session.get('language') == 'it' %}Home
+                                {% elif session.get('language') == 'pt' %}Início
+                                {% elif session.get('language') == 'de' %}Startseite
+                                {% else %}Home{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('courses') }}">
+                                {% if session.get('language') == 'es' %}Cursos
+                                {% elif session.get('language') == 'it' %}Corsi
+                                {% elif session.get('language') == 'pt' %}Cursos
+                                {% elif session.get('language') == 'de' %}Kurse
+                                {% else %}Courses{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('sessions') }}">
+                                {% if session.get('language') == 'es' %}Sesiones 1 a 1
+                                {% elif session.get('language') == 'it' %}Sessioni 1 a 1
+                                {% elif session.get('language') == 'pt' %}Sessões 1 para 1
+                                {% elif session.get('language') == 'de' %}1-zu-1 Sitzungen
+                                {% else %}1-on-1 Sessions{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('group_sessions') }}">
+                                {% if session.get('language') == 'es' %}Sesiones Grupales
+                                {% elif session.get('language') == 'it' %}Sessioni di Gruppo
+                                {% elif session.get('language') == 'pt' %}Sessões em Grupo
+                                {% elif session.get('language') == 'de' %}Gruppensitzungen
+                                {% else %}Group Sessions{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('memberships') }}">
+                                {% if session.get('language') == 'es' %}Membresías
+                                {% elif session.get('language') == 'it' %}Abbonamenti
+                                {% elif session.get('language') == 'pt' %}Associações
+                                {% elif session.get('language') == 'de' %}Mitgliedschaften
+                                {% else %}Memberships{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="calculatorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if session.get('language') == 'es' %}Calculadoras
+                                {% elif session.get('language') == 'it' %}Calcolatori
+                                {% elif session.get('language') == 'pt' %}Calculadoras
+                                {% elif session.get('language') == 'de' %}Rechner
+                                {% else %}Calculators{% endif %}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="calculatorsDropdown">
+                                <li><a class="dropdown-item" href="{{ url_for('natal_chart') }}">
+                                    {% if session.get('language') == 'es' %}Carta Natal
+                                    {% elif session.get('language') == 'it' %}Tema Natale
+                                    {% elif session.get('language') == 'pt' %}Mapa Astral
+                                    {% elif session.get('language') == 'de' %}Geburtshoroskop
+                                    {% else %}Natal Chart{% endif %}
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('human_design') }}">
+                                    {% if session.get('language') == 'es' %}Diseño Humano
+                                    {% elif session.get('language') == 'it' %}Human Design
+                                    {% elif session.get('language') == 'pt' %}Desenho Humano
+                                    {% elif session.get('language') == 'de' %}Human Design
+                                    {% else %}Human Design{% endif %}
+                                </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('blog') }}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('about') }}">
+                                {% if session.get('language') == 'es' %}Sobre Nosotros
+                                {% elif session.get('language') == 'it' %}Chi Siamo
+                                {% elif session.get('language') == 'pt' %}Sobre Nós
+                                {% elif session.get('language') == 'de' %}Über Uns
+                                {% else %}About{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('contact') }}">
+                                {% if session.get('language') == 'es' %}Contacto
+                                {% elif session.get('language') == 'it' %}Contatti
+                                {% elif session.get('language') == 'pt' %}Contato
+                                {% elif session.get('language') == 'de' %}Kontakt
+                                {% else %}Contact{% endif %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>METATONEHEN</h3>
+                    <p>
+                        {% if session.get('language') == 'es' %}Educación espiritual y transformación a través de la sabiduría cósmica y la geometría sagrada.
+                        {% elif session.get('language') == 'it' %}Educazione spirituale e trasformazione attraverso la saggezza cosmica e la geometria sacra.
+                        {% elif session.get('language') == 'pt' %}Educação espiritual e transformação através da sabedoria cósmica e geometria sagrada.
+                        {% elif session.get('language') == 'de' %}Spirituelle Bildung und Transformation durch kosmische Weisheit und heilige Geometrie.
+                        {% else %}Spiritual education and transformation through cosmic wisdom and sacred geometry.{% endif %}
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        {% if session.get('language') == 'es' %}Enlaces Rápidos
+                        {% elif session.get('language') == 'it' %}Link Rapidi
+                        {% elif session.get('language') == 'pt' %}Links Rápidos
+                        {% elif session.get('language') == 'de' %}Schnelllinks
+                        {% else %}Quick Links{% endif %}
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('courses') }}">
+                            {% if session.get('language') == 'es' %}Cursos
+                            {% elif session.get('language') == 'it' %}Corsi
+                            {% elif session.get('language') == 'pt' %}Cursos
+                            {% elif session.get('language') == 'de' %}Kurse
+                            {% else %}Courses{% endif %}
+                        </a></li>
+                        <li><a href="{{ url_for('sessions') }}">
+                            {% if session.get('language') == 'es' %}Sesiones 1 a 1
+                            {% elif session.get('language') == 'it' %}Sessioni 1 a 1
+                            {% elif session.get('language') == 'pt' %}Sessões 1 para 1
+                            {% elif session.get('language') == 'de' %}1-zu-1 Sitzungen
+                            {% else %}1-on-1 Sessions{% endif %}
+                        </a></li>
+                        <li><a href="{{ url_for('group_sessions') }}">
+                            {% if session.get('language') == 'es' %}Sesiones Grupales
+                            {% elif session.get('language') == 'it' %}Sessioni di Gruppo
+                            {% elif session.get('language') == 'pt' %}Sessões em Grupo
+                            {% elif session.get('language') == 'de' %}Gruppensitzungen
+                            {% else %}Group Sessions{% endif %}
+                        </a></li>
+                        <li><a href="{{ url_for('memberships') }}">
+                            {% if session.get('language') == 'es' %}Membresías
+                            {% elif session.get('language') == 'it' %}Abbonamenti
+                            {% elif session.get('language') == 'pt' %}Associações
+                            {% elif session.get('language') == 'de' %}Mitgliedschaften
+                            {% else %}Memberships{% endif %}
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        {% if session.get('language') == 'es' %}Conectar
+                        {% elif session.get('language') == 'it' %}Connettiti
+                        {% elif session.get('language') == 'pt' %}Conectar
+                        {% elif session.get('language') == 'de' %}Verbinden
+                        {% else %}Connect{% endif %}
+                    </h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mt-4">
+                    <p>
+                        {% if session.get('language') == 'es' %}
+                            &copy; 2023 METATONEHEN. Todos los derechos reservados.
+                        {% elif session.get('language') == 'it' %}
+                            &copy; 2023 METATONEHEN. Tutti i diritti riservati.
+                        {% elif session.get('language') == 'pt' %}
+                            &copy; 2023 METATONEHEN. Todos os direitos reservados.
+                        {% elif session.get('language') == 'de' %}
+                            &copy; 2023 METATONEHEN. Alle Rechte vorbehalten.
+                        {% else %}
+                            &copy; 2023 METATONEHEN. All Rights Reserved.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/page-transition.js') }}"></script>
+    
+    {% if session.get('edit_mode') %}
+    <!-- Editor JS -->
+    <script src="{{ url_for('static', filename='js/inline-editor.js') }}"></script>
+    {% endif %}
+    
+    <!-- Language Selector JS -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const languageToggle = document.getElementById('language-toggle');
+        const languageMenu = document.getElementById('language-menu');
+        
+        // Toggle language dropdown
+        languageToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (languageMenu.style.display === 'flex') {
+                languageMenu.style.display = 'none';
+                languageToggle.classList.remove('active');
+            } else {
+                languageMenu.style.display = 'flex';
+                languageToggle.classList.add('active');
+            }
+        });
+        
+        // Close dropdown when clicking elsewhere
+        document.addEventListener('click', function() {
+            languageMenu.style.display = 'none';
+            languageToggle.classList.remove('active');
+        });
+        
+        // Prevent dropdown from closing when clicking inside it
+        languageMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Add click event for language options to prevent default behavior
+        const languageOptions = document.querySelectorAll('.language-option');
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Mostrar un indicador visual de carga
+                this.classList.add('selecting');
+                // Permitir que continue la navegación normal
+            });
+        });
+    });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Login - METATONEHEN{% endblock %}
+
+{% block content %}
+<section class="admin-login-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="admin-login-card">
+                    <h2 class="text-center">Acceso al Portal METATONEHEN</h2>
+                    
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <form method="POST" action="{{ url_for('admin_login') }}">
+                        <div class="form-group mb-3">
+                            <label for="password">Contraseña del Portal</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Acceder al Portal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .admin-login-section {
+        padding: 80px 0;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        background: url('/static/images/flower_of_life_enhanced.svg') no-repeat center center;
+        background-size: 80%;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        background-color: rgba(255, 255, 255, 0.97);
+    }
+    
+    .admin-login-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 50px 40px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        border: 2px solid rgba(201, 172, 72, 0.5);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .admin-login-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #C9AC48, #e5d18a, #C9AC48);
+    }
+    
+    .admin-login-card h2 {
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .form-control {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(201, 172, 72, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: #C9AC48;
+        box-shadow: 0 0 0 0.25rem rgba(201, 172, 72, 0.25);
+    }
+    
+    .btn-primary {
+        background-color: #C9AC48;
+        border-color: #C9AC48;
+        padding: 12px 35px;
+        border-radius: 50px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: #b89b3d;
+        border-color: #b89b3d;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(184, 155, 61, 0.3);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,314 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestor de Archivos - METATONEHEN{% endblock %}
+
+{% block content %}
+<section class="media-manager-section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="admin-header">
+                    <h1>Gestor de Archivos</h1>
+                    <div class="admin-actions">
+                        <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-primary me-2">Panel Principal</a>
+                        <a href="{{ url_for('visual_editor') }}" class="btn btn-success me-2">Editor Visual</a>
+                        <a href="{{ url_for('page_manager') }}" class="btn btn-primary me-2">Editor de Páginas</a>
+                        <a href="{{ url_for('admin_logout') }}" class="btn btn-outline-primary">Logout</a>
+                    </div>
+                </div>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card upload-card">
+                    <div class="card-header">
+                        <h3>Subir Nuevo Archivo</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('upload_media') }}" method="POST" enctype="multipart/form-data">
+                            {{ upload_form.hidden_tag() }}
+                            
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Seleccionar Archivo</label>
+                                {{ upload_form.file(class="form-control") }}
+                                <div class="form-text">Formatos permitidos: JPG, PNG, GIF, SVG</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Descripción</label>
+                                {{ upload_form.description(class="form-control") }}
+                            </div>
+                            
+                            <div class="d-grid">
+                                {{ upload_form.submit(class="btn btn-primary") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3>Ayuda</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>¿Cómo usar las imágenes?</h5>
+                        <p>Después de subir una imagen, copia la URL para usarla en el editor de páginas o en plantillas.</p>
+                        
+                        <h5>Formato de URL de imagen</h5>
+                        <code>/static/uploads/filename.jpg</code>
+                        
+                        <h5>Ejemplo de código HTML para insertar imagen</h5>
+                        <pre><code>&lt;img src="/static/uploads/filename.jpg" alt="Descripción" class="img-fluid"&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-8">
+                <div class="card media-gallery-card">
+                    <div class="card-header">
+                        <h3>Archivos Subidos</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if media_files %}
+                            <div class="row media-gallery">
+                                {% for media in media_files %}
+                                    <div class="col-md-4 col-sm-6 mb-4">
+                                        <div class="media-item">
+                                            <div class="media-preview">
+                                                {% if media.file_type.startswith('image/') %}
+                                                    <img src="{{ media.file_path }}" alt="{{ media.description or media.original_filename }}" class="img-thumbnail">
+                                                {% else %}
+                                                    <div class="file-icon">
+                                                        <i class="fas fa-file"></i>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="media-info">
+                                                <h5 class="media-title">{{ media.original_filename }}</h5>
+                                                <p class="media-description">{{ media.description or 'Sin descripción' }}</p>
+                                                <div class="media-meta">
+                                                    <span class="media-date">{{ media.upload_date.strftime('%d/%m/%Y %H:%M') }}</span>
+                                                    <span class="media-size">{{ (media.file_size / 1024)|round(1) }} KB</span>
+                                                </div>
+                                                <div class="media-actions">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm copy-url" value="{{ media.file_path }}" readonly>
+                                                        <button class="btn btn-sm btn-outline-secondary copy-btn" type="button" data-url="{{ media.file_path }}">
+                                                            <i class="fas fa-copy"></i>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ url_for('delete_media', media_id=media.id) }}" method="POST" class="d-inline delete-form">
+                                                        <button type="submit" class="btn btn-sm btn-danger mt-2 delete-btn">
+                                                            <i class="fas fa-trash"></i> Eliminar
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="no-media">
+                                <p>No hay archivos subidos todavía. Sube tu primer archivo usando el formulario de la izquierda.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .media-manager-section {
+        padding: 50px 0;
+    }
+    
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .card {
+        border: 1px solid rgba(201, 172, 72, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid rgba(201, 172, 72, 0.3);
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        color: #333;
+    }
+    
+    .media-item {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .media-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
+    }
+    
+    .media-preview {
+        height: 150px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f8f8;
+    }
+    
+    .media-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .file-icon {
+        font-size: 3rem;
+        color: #ccc;
+    }
+    
+    .media-info {
+        padding: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .media-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .media-description {
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 10px;
+        height: 40px;
+        overflow: hidden;
+    }
+    
+    .media-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: #888;
+        margin-bottom: 10px;
+    }
+    
+    .media-actions {
+        margin-top: auto;
+    }
+    
+    .copy-url {
+        font-size: 0.75rem;
+    }
+    
+    .copy-btn {
+        font-size: 0.75rem;
+    }
+    
+    .delete-btn {
+        font-size: 0.75rem;
+    }
+    
+    .btn-primary {
+        background-color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-primary:hover {
+        background-color: #b89b3d;
+        border-color: #b89b3d;
+    }
+    
+    .btn-outline-primary {
+        color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: #C9AC48;
+        color: white;
+    }
+    
+    .no-media {
+        text-align: center;
+        padding: 40px 0;
+        color: #888;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copiar URL al portapapeles
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                const tempInput = document.createElement('input');
+                document.body.appendChild(tempInput);
+                tempInput.value = url;
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                // Cambiar el botón temporalmente para indicar que se copió
+                const originalHtml = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.classList.add('btn-success');
+                this.classList.remove('btn-outline-secondary');
+                
+                setTimeout(() => {
+                    this.innerHTML = originalHtml;
+                    this.classList.remove('btn-success');
+                    this.classList.add('btn-outline-secondary');
+                }, 1500);
+            });
+        });
+        
+        // Confirmar eliminar
+        const deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                if (!confirm('¿Estás seguro de que quieres eliminar este archivo? Esta acción no se puede deshacer.')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

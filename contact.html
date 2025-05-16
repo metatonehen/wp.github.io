@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Reach out to our cosmic team</p>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form id="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select class="form-select" id="subject" required>
+                                <option value="" selected disabled>Select a subject</option>
+                                <option value="courses">Courses Inquiry</option>
+                                <option value="sessions">Sessions Booking</option>
+                                <option value="retreats">Retreats Information</option>
+                                <option value="membership">Membership Questions</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="newsletter-signup">
+                            <label class="form-check-label" for="newsletter-signup">
+                                Subscribe to our newsletter for cosmic updates and special offers
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    
+                    <div id="form-success" class="alert alert-success mt-3 d-none">
+                        Thank you for your message! We'll respond to your inquiry within 48 hours.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="contact-info">
+                    <h2>Connect With Us</h2>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Email Us</h3>
+                            <p>General Inquiries: <a href="mailto:info@neogaiam.com">info@neogaiam.com</a></p>
+                            <p>Support: <a href="mailto:support@neogaiam.com">support@neogaiam.com</a></p>
+                            <p>Bookings: <a href="mailto:bookings@neogaiam.com">bookings@neogaiam.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Call Us</h3>
+                            <p>Customer Support: <a href="tel:+18001234567">+1 (800) 123-4567</a></p>
+                            <p>Hours: Monday-Friday, 9am-5pm EST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Virtual Office</h3>
+                            <p>We operate primarily online with practitioners located worldwide.</p>
+                            <p>Retreat locations vary by event.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Live Chat</h3>
+                            <p>Available on our website Monday-Friday, 10am-4pm EST</p>
+                            <button class="btn btn-outline-primary mt-2">Start Chat</button>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="accordion" id="contactFAQ">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How quickly can I expect a response to my inquiry?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#contactFAQ">
+                    <div class="accordion-body">
+                        We aim to respond to all inquiries within 24-48 hours during business days. For urgent matters related to scheduled sessions or technical issues, please indicate this in your subject line.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How do I reschedule or cancel a session?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#contactFAQ">
+                    <div class="accordion-body">
+                        To reschedule or cancel a session, please log into your account and visit the "My Bookings" section. You can make changes up to 24 hours before your scheduled session. For last-minute changes, please contact us directly at bookings@neogaiam.com or call our support line.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Are your courses and sessions available internationally?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#contactFAQ">
+                    <div class="accordion-body">
+                        Yes, all of our online courses and virtual sessions are available internationally. We have practitioners who speak multiple languages and offer sessions in various time zones. Please check the specific details for each course or practitioner for language information and scheduling options.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        How do I apply to become a practitioner at Neo Gaiam?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#contactFAQ">
+                    <div class="accordion-body">
+                        We're always looking for skilled practitioners to join our community. Please send your resume, relevant certifications, and a cover letter explaining your approach and specialties to practitioners@neogaiam.com. We review applications monthly and will contact qualified candidates for an interview.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            setTimeout(function() {
+                // Reset form
+                contactForm.reset();
+                
+                // Show success message
+                formSuccess.classList.remove('d-none');
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    formSuccess.classList.add('d-none');
+                }, 5000);
+            }, 1000);
+        });
+    });
+</script>
+{% endblock %}

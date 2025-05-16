@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Courses</h1>
+        <p>Expand your consciousness through our transformative learning journeys</p>
+    </div>
+</section>
+
+<section class="cube-portal-section">
+    <div class="container">
+        <div class="sacred-geometry-container" style="position: relative; margin-bottom: 40px;">
+            <div class="flower-of-life" style="position: absolute; max-width: 350px; left: 50%; transform: translateX(-50%);">
+                <img src="{{ url_for('static', filename='images/flower_of_life_enhanced.svg') }}" alt="Flower of Life">
+            </div>
+            <div class="metatron-cube-large" style="position: relative; z-index: 2;">
+                <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube">
+            
+            <div class="portal-vertices">
+                <a href="#love-courses" class="portal-vertex vertex-1 vertex-love">
+                    <span>Love <i class="fas fa-heart"></i></span>
+                </a>
+                <a href="#money-courses" class="portal-vertex vertex-2 vertex-money">
+                    <span>Money <i class="fas fa-coins"></i></span>
+                </a>
+                <a href="#health-courses" class="portal-vertex vertex-3 vertex-health">
+                    <span>Health <i class="fas fa-heartbeat"></i></span>
+                </a>
+                <a href="#mind-courses" class="portal-vertex vertex-4 vertex-mind">
+                    <span>Mind <i class="fas fa-brain"></i></span>
+                </a>
+                <a href="#soul-courses" class="portal-vertex vertex-5 vertex-soul">
+                    <span>Soul <i class="fas fa-infinity"></i></span>
+                </a>
+                <a href="#body-courses" class="portal-vertex vertex-6 vertex-body">
+                    <span>Body <i class="fas fa-walking"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="love-courses" class="courses-category">
+    <div class="container">
+        <div class="category-header">
+            <h2><i class="fas fa-heart"></i> Love Courses</h2>
+            <p>Cultivate deeper connections and conscious relationships</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="course-card">
+                    <div class="course-image">
+                        <div class="course-badge">Featured</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Sacred Union: Twin Flame Connections</h3>
+                        <p>Discover the deeper spiritual purpose of romantic relationships and how to attract your divine counterpart.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 8 Weeks</span>
+                            <span><i class="far fa-calendar-alt"></i> Self-Paced</span>
+                        </div>
+                        <div class="course-packages">
+                            <div class="package silver">
+                                <h4>Silver</h4>
+                                <p class="price">$197</p>
+                                <ul>
+                                    <li>8 Recorded Modules</li>
+                                    <li>Downloadable Workbook</li>
+                                    <li>Community Forum Access</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Gold</h4>
+                                <p class="price">$397</p>
+                                <ul>
+                                    <li>Everything in Silver</li>
+                                    <li>2 Live Q&A Sessions</li>
+                                    <li>1 Personal Coaching Call</li>
+                                    <li>Advanced Practices Library</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="course-card">
+                    <div class="course-image">
+                    </div>
+                    <div class="course-content">
+                        <h3>Heart Chakra Healing</h3>
+                        <p>Cleanse and activate your heart center to attract and sustain loving relationships.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 4 Weeks</span>
+                            <span><i class="far fa-calendar-alt"></i> Self-Paced</span>
+                        </div>
+                        <div class="course-packages">
+                            <div class="package silver">
+                                <h4>Silver</h4>
+                                <p class="price">$97</p>
+                                <ul>
+                                    <li>4 Recorded Modules</li>
+                                    <li>Heart Chakra Meditation</li>
+                                    <li>Practice Guide</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Gold</h4>
+                                <p class="price">$197</p>
+                                <ul>
+                                    <li>Everything in Silver</li>
+                                    <li>1 Live Healing Session</li>
+                                    <li>Heart Chakra Crystal Kit</li>
+                                    <li>Advanced Meditations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="course-card">
+                    <div class="course-image">
+                    </div>
+                    <div class="course-content">
+                        <h3>Venus Return: Awakening Divine Feminine</h3>
+                        <p>Work with Venus cycles to manifest loving relationships and inner harmony.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 6 Weeks</span>
+                            <span><i class="far fa-calendar-alt"></i> Starts Monthly</span>
+                        </div>
+                        <div class="course-packages">
+                            <div class="package silver">
+                                <h4>Silver</h4>
+                                <p class="price">$147</p>
+                                <ul>
+                                    <li>6 Recorded Modules</li>
+                                    <li>Venus Ritual Guide</li>
+                                    <li>Personal Venus Workbook</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Gold</h4>
+                                <p class="price">$297</p>
+                                <ul>
+                                    <li>Everything in Silver</li>
+                                    <li>2 Group Venus Ceremonies</li>
+                                    <li>1 Venus Chart Reading</li>
+                                    <li>Venus Meditation Library</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="money-courses" class="courses-category">
+    <div class="container">
+        <div class="category-header">
+            <h2><i class="fas fa-coins"></i> Money Courses</h2>
+            <p>Transform your relationship with abundance and prosperity</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="course-card">
+                    <div class="course-image">
+                        <div class="course-badge">Bestseller</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Cosmic Abundance: Manifesting with the Stars</h3>
+                        <p>Learn to work with astrological cycles to attract wealth and opportunity.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 8 Weeks</span>
+                            <span><i class="far fa-calendar-alt"></i> Self-Paced</span>
+                        </div>
+                        <div class="course-packages">
+                            <div class="package silver">
+                                <h4>Silver</h4>
+                                <p class="price">$197</p>
+                                <ul>
+                                    <li>8 Recorded Modules</li>
+                                    <li>Abundance Calendar</li>
+                                    <li>Manifestation Workbook</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Gold</h4>
+                                <p class="price">$397</p>
+                                <ul>
+                                    <li>Everything in Silver</li>
+                                    <li>2 Live Abundance Ceremonies</li>
+                                    <li>1 Prosperity Chart Reading</li>
+                                    <li>Money Mindset Coaching Session</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More money courses would go here -->
+        </div>
+    </div>
+</section>
+
+<!-- Additional course categories would follow the same pattern -->
+
+<section class="course-registration">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2>Ready to Begin Your Journey?</h2>
+                <p>Join our cosmic community and start your transformation today. Members receive special pricing on all courses.</p>
+            </div>
+            <div class="col-lg-6">
+                <a href="{{ url_for('memberships') }}" class="btn btn-lg btn-primary">Explore Memberships</a>
+                <a href="#" class="btn btn-lg btn-outline-light">Browse All Courses</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

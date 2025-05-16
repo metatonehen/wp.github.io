@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+
+{% block title %}Human Design Calculator | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Human Design Calculator</h1>
+        <p>Discover your energetic blueprint</p>
+    </div>
+</section>
+
+<section class="calculator-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="calculator-form">
+                    <h2>Enter Your Birth Details</h2>
+                    <form id="human-design-form">
+                        <div class="mb-3">
+                            <label for="hd-name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="hd-name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="hd-birth-date" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="hd-birth-date" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="hd-birth-hour" class="form-label">Birth Hour</label>
+                                <select class="form-select" id="hd-birth-hour" required>
+                                    <option value="" selected disabled>Select hour</option>
+                                    {% for hour in range(0, 24) %}
+                                        <option value="{{ hour }}">{{ '%02d'|format(hour) }}:00</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="hd-birth-minute" class="form-label">Birth Minute</label>
+                                <select class="form-select" id="hd-birth-minute" required>
+                                    <option value="" selected disabled>Select minute</option>
+                                    {% for minute in range(0, 60) %}
+                                        <option value="{{ minute }}">{{ '%02d'|format(minute) }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="hd-birth-city" class="form-label">Birth City</label>
+                            <input type="text" class="form-control" id="hd-birth-city" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="hd-birth-country" class="form-label">Birth Country</label>
+                            <select class="form-select" id="hd-birth-country" required>
+                                <option value="" selected disabled>Select country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <!-- More countries would be added here -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="hd-unknown-birth-time">
+                            <label class="form-check-label" for="hd-unknown-birth-time">
+                                I don't know my birth time
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg">Calculate Human Design</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="design-preview">
+                    <div class="preview-placeholder">
+                        <div class="metatron-cube-bg">
+                            <img src="{{ url_for('static', filename='images/metatron_cube.svg') }}" alt="Metatron's Cube">
+                        </div>
+                        <div class="design-message">
+                            <h3>Your Human Design Will Appear Here</h3>
+                            <p>Enter your birth details to discover your energy type, authority, profile, and defined/undefined centers.</p>
+                            <p class="info-note"><i class="fas fa-info-circle"></i> For the most accurate design, please include your exact birth time.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="design-result" class="d-none">
+                        <!-- Human Design results will be displayed here via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="design-info-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <h3>What Is Human Design?</h3>
+                    <p>Human Design is a synthesis of ancient and modern sciences that offers a detailed map of your energetic makeup. It combines elements from astrology, the I Ching, Kabbalah, the chakra system, and quantum physics.</p>
+                    <p>Your Human Design chart, also called a BodyGraph, reveals how you're uniquely designed to navigate the world, make decisions, and interact with others in an authentic way.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <h3>What You'll Discover</h3>
+                    <ul>
+                        <li><strong>Energy Type:</strong> How you're designed to interact with the world (Manifestor, Generator, Manifesting Generator, Projector, or Reflector)</li>
+                        <li><strong>Authority:</strong> Your unique decision-making system</li>
+                        <li><strong>Profile:</strong> Your life's theme and approach to relationships</li>
+                        <li><strong>Defined Centers:</strong> Consistent energies in your life</li>
+                        <li><strong>Undefined Centers:</strong> Areas where you're open to conditioning but also wisdom</li>
+                        <li><strong>Gates & Channels:</strong> Specific energetic themes activated in your design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="types-overview">
+            <h3>The Five Energy Types</h3>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <div class="type-card manifestor">
+                        <h4>Manifestor</h4>
+                        <p>Initiators, designed to impact others and start things</p>
+                        <span class="type-percent">~9% of population</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <div class="type-card generator">
+                        <h4>Generator</h4>
+                        <p>Life force, designed to respond and build</p>
+                        <span class="type-percent">~37% of population</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <div class="type-card manifesting-generator">
+                        <h4>Manifesting Generator</h4>
+                        <p>Multi-faceted builders with manifestor qualities</p>
+                        <span class="type-percent">~33% of population</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <div class="type-card projector">
+                        <h4>Projector</h4>
+                        <p>Guides, designed to manage, direct, and guide others</p>
+                        <span class="type-percent">~20% of population</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <div class="type-card reflector">
+                        <h4>Reflector</h4>
+                        <p>Evaluators, mirrors for the health of the community</p>
+                        <span class="type-percent">~1% of population</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="session-promo">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3>Want a Professional Reading?</h3>
+                    <p>While our calculator provides basic information, the true power of Human Design comes through a personalized reading that helps you apply these insights to your life.</p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="{{ url_for('sessions') }}#human-design" class="btn btn-primary">Book a Human Design Session</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const humanDesignForm = document.getElementById('human-design-form');
+        const unknownBirthTime = document.getElementById('hd-unknown-birth-time');
+        const birthHour = document.getElementById('hd-birth-hour');
+        const birthMinute = document.getElementById('hd-birth-minute');
+        const designResult = document.getElementById('design-result');
+        const previewPlaceholder = document.querySelector('.preview-placeholder');
+        
+        // Toggle birth time fields based on checkbox
+        unknownBirthTime.addEventListener('change', function() {
+            birthHour.disabled = this.checked;
+            birthMinute.disabled = this.checked;
+            
+            if (this.checked) {
+                birthHour.value = '';
+                birthMinute.value = '';
+            }
+        });
+        
+        // Handle form submission
+        humanDesignForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate human design calculation
+            simulateDesignCalculation();
+        });
+        
+        function simulateDesignCalculation() {
+            // Show loading state
+            previewPlaceholder.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div><p class="text-center">Calculating your Human Design...</p>';
+            
+            // Simulate API call delay
+            setTimeout(function() {
+                // In a real implementation, this would be replaced with actual API integration
+                designResult.innerHTML = `
+                    <div class="design-header">
+                        <h3>${document.getElementById('hd-name').value}'s Human Design</h3>
+                        <p>Born on ${formatDate(document.getElementById('hd-birth-date').value)} in ${document.getElementById('hd-birth-city').value}, ${document.getElementById('hd-birth-country').options[document.getElementById('hd-birth-country').selectedIndex].text}</p>
+                    </div>
+                    <div class="design-summary">
+                        <div class="summary-item">
+                            <span class="label">Type</span>
+                            <span class="value">Generator</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Authority</span>
+                            <span class="value">Sacral</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Profile</span>
+                            <span class="value">5/1</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Definition</span>
+                            <span class="value">Single</span>
+                        </div>
+                    </div>
+                    <div class="bodygraph-placeholder">
+                        <p class="text-center">This is where your actual BodyGraph would be displayed.</p>
+                        <p class="text-center">In the WordPress implementation, this would connect to a Human Design API.</p>
+                    </div>
+                    <div class="design-interpretation">
+                        <div class="interpretation-section">
+                            <h4>Your Type: Generator</h4>
+                            <p>As a Generator, you have a powerful sacral center that gives you sustainable energy for things that excite you. Your strategy is to <strong>wait to respond</strong> rather than initiating. When you respond to what lights you up, you access your natural power and satisfaction.</p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h4>Your Authority: Sacral</h4>
+                            <p>Your decisions are best made through your gut responses. Listen to the visceral "uh-huh" (yes) or "uh-uh" (no) sounds and feelings from your sacral center. This is your most reliable decision-making tool.</p>
+                        </div>
+                        <div class="interpretation-section">
+                            <h4>Your Profile: 5/1 (Heretic/Investigator)</h4>
+                            <p>You have a natural capacity to solve problems in practical ways. The 5th line brings an expectation from others that you'll be a savior or heretic, while the 1st line gives you foundational investigative qualities.</p>
+                        </div>
+                        <div class="disclaimer">
+                            <p><strong>Note:</strong> This is a simplified interpretation. For a complete analysis, consider booking a session with one of our Human Design analysts.</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Show the result and hide placeholder
+                designResult.classList.remove('d-none');
+                previewPlaceholder.classList.add('d-none');
+            }, 2000);
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString(undefined, options);
+        }
+    });
+</script>
+{% endblock %}

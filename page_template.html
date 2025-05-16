@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page.name }} - METATONEHEN{% endblock %}
+
+{% block content %}
+<section class="custom-page-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <h1>{{ page.name }}</h1>
+                    {% if session.get('is_admin') %}
+                    <div class="admin-actions">
+                        <a href="{{ url_for('edit_page', page_id=page.id) }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i> Editar Página
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="page-content">
+                    {{ page.content|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .custom-page-section {
+        padding: 80px 0;
+    }
+    
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    
+    .page-header h1 {
+        margin-bottom: 0;
+        color: #333;
+    }
+    
+    .page-content {
+        line-height: 1.8;
+    }
+    
+    .page-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+    
+    .page-content h1, 
+    .page-content h2, 
+    .page-content h3, 
+    .page-content h4, 
+    .page-content h5, 
+    .page-content h6 {
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        color: #333;
+    }
+    
+    .page-content p {
+        margin-bottom: 1.2em;
+    }
+    
+    .page-content blockquote {
+        border-left: 4px solid #C9AC48;
+        padding-left: 20px;
+        margin-left: 0;
+        font-style: italic;
+        color: #555;
+    }
+    
+    .page-content ul, 
+    .page-content ol {
+        padding-left: 30px;
+        margin-bottom: 1.2em;
+    }
+    
+    .page-content a {
+        color: #C9AC48;
+    }
+    
+    .page-content a:hover {
+        color: #b89b3d;
+        text-decoration: underline;
+    }
+    
+    .btn-primary {
+        background-color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-primary:hover {
+        background-color: #b89b3d;
+        border-color: #b89b3d;
+    }
+</style>
+{% endblock %}

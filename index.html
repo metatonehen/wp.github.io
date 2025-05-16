@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+
+{% block title %}METATONEHEN - 
+    {% if session.get('language') == 'es' %}Transformación Espiritual
+    {% elif session.get('language') == 'it' %}Trasformazione Spirituale
+    {% elif session.get('language') == 'pt' %}Transformação Espiritual
+    {% elif session.get('language') == 'de' %}Spirituelle Transformation
+    {% else %}Spiritual Transformation{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1>{{ content.hero_title|default('METATONEHEN') }}</h1>
+                    <p class="greek-text">{{ content.hero_subtitle|default('μετὰ τὸ νέἕν') }}</p>
+                    <p class="lead">{{ content.hero_text|default(
+                        'Bienvenido a mi sitio de conocimiento espiritual y geometría sagrada' if not session.get('language') or session.get('language') == 'en' else
+                        'Bienvenido a mi sitio de conocimiento espiritual y geometría sagrada' if session.get('language') == 'es' else
+                        'Benvenuto nel mio sito di conoscenza spirituale e geometria sacra' if session.get('language') == 'it' else
+                        'Bem-vindo ao meu site de conhecimento espiritual e geometria sagrada' if session.get('language') == 'pt' else
+                        'Willkommen auf meiner Website für spirituelles Wissen und heilige Geometrie'
+                    ) }}</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="sacred-geometry-container">
+                    <div class="flower-of-life">
+                        <img src="{{ url_for('static', filename='images/flower_of_life_enhanced.svg') }}" alt="Flower of Life">
+                    </div>
+                    <div class="metatron-cube">
+                        <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cubes-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>
+                {% if session.get('language') == 'es' %}Explora Nuestros Portales
+                {% elif session.get('language') == 'it' %}Esplora I Nostri Portali
+                {% elif session.get('language') == 'pt' %}Explore Nossos Portais
+                {% elif session.get('language') == 'de' %}Erkunde Unsere Portale
+                {% else %}Explore Our Portals{% endif %}
+            </h2>
+            <p>
+                {% if session.get('language') == 'es' %}Entra en los portales del conocimiento y la transformación
+                {% elif session.get('language') == 'it' %}Entra nei portali della conoscenza e della trasformazione
+                {% elif session.get('language') == 'pt' %}Entre nos portais do conhecimento e da transformação
+                {% elif session.get('language') == 'de' %}Betrete die Portale des Wissens und der Transformation
+                {% else %}Enter the portals of knowledge and transformation{% endif %}
+            </p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="metatron-portal-container">
+                    <h3 class="portal-title">Courses</h3>
+                    <div class="metatron-portal">
+                        <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube" class="portal-background">
+                        <div class="portal-vertices">
+                            <a href="{{ url_for('courses') }}#love-courses" class="portal-vertex vertex-1 vertex-love">
+                                <span>Love</span>
+                            </a>
+                            <a href="{{ url_for('courses') }}#money-courses" class="portal-vertex vertex-2 vertex-money">
+                                <span>Money</span>
+                            </a>
+                            <a href="{{ url_for('courses') }}#health-courses" class="portal-vertex vertex-3 vertex-health">
+                                <span>Health</span>
+                            </a>
+                            <a href="{{ url_for('courses') }}#mind-courses" class="portal-vertex vertex-4 vertex-mind">
+                                <span>Mind</span>
+                            </a>
+                            <a href="{{ url_for('courses') }}#soul-courses" class="portal-vertex vertex-5 vertex-soul">
+                                <span>Soul</span>
+                            </a>
+                            <a href="{{ url_for('courses') }}#body-courses" class="portal-vertex vertex-6 vertex-body">
+                                <span>Body</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('courses') }}" class="portal-link">Enter Portal</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="metatron-portal-container">
+                    <h3 class="portal-title">1-on-1 Sessions</h3>
+                    <div class="metatron-portal">
+                        <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube" class="portal-background">
+                        <div class="portal-vertices">
+                            <a href="{{ url_for('sessions') }}#coaching" class="portal-vertex vertex-1">
+                                <span>Coaching</span>
+                            </a>
+                            <a href="{{ url_for('sessions') }}#astrology" class="portal-vertex vertex-2">
+                                <span>Astrology</span>
+                            </a>
+                            <a href="{{ url_for('sessions') }}#human-design" class="portal-vertex vertex-3">
+                                <span>Human Design</span>
+                            </a>
+                            <a href="{{ url_for('sessions') }}#constellations" class="portal-vertex vertex-4">
+                                <span>Constellations</span>
+                            </a>
+                            <a href="{{ url_for('sessions') }}#healing" class="portal-vertex vertex-5">
+                                <span>Healing</span>
+                            </a>
+                            <a href="{{ url_for('sessions') }}#meditation" class="portal-vertex vertex-6">
+                                <span>Meditation</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('sessions') }}" class="portal-link">Enter Portal</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="metatron-portal-container">
+                    <h3 class="portal-title">Group Sessions</h3>
+                    <div class="metatron-portal">
+                        <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube" class="portal-background">
+                        <div class="portal-vertices">
+                            <a href="{{ url_for('group_sessions') }}#meditations" class="portal-vertex vertex-1">
+                                <span>Meditations</span>
+                            </a>
+                            <a href="{{ url_for('group_sessions') }}#retreats" class="portal-vertex vertex-2">
+                                <span>Retreats</span>
+                            </a>
+                            <a href="{{ url_for('group_sessions') }}#workshops" class="portal-vertex vertex-3">
+                                <span>Workshops</span>
+                            </a>
+                            <a href="{{ url_for('group_sessions') }}#ceremonies" class="portal-vertex vertex-4">
+                                <span>Ceremonies</span>
+                            </a>
+                            <a href="{{ url_for('group_sessions') }}#healing-circles" class="portal-vertex vertex-5">
+                                <span>Healing Circles</span>
+                            </a>
+                            <a href="{{ url_for('group_sessions') }}#online-events" class="portal-vertex vertex-6">
+                                <span>Online Events</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('group_sessions') }}" class="portal-link">Enter Portal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-courses-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Featured Courses</h2>
+            <p>Transformational wisdom for your journey</p>
+        </div>
+        
+        <div class="metatron-courses-container">
+            <div class="metatron-cube-large">
+                <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube Background">
+                
+                <div class="cube-vertices">
+                    {% if featured_courses %}
+                        {% for course in featured_courses %}
+                            <a href="{{ url_for('courses') }}?category={{ course.category }}" class="vertex vertex-course vertex-{{ loop.index }}">
+                                <div class="vertex-content">
+                                    <span class="vertex-name">{{ course.title }}</span>
+                                    <span class="vertex-category">{{ course.category }}</span>
+                                </div>
+                                
+                                <div class="course-card-popup">
+                                    {% if course.image_url %}
+                                    <div class="course-image">
+                                        <img src="{{ course.image_url }}" alt="{{ course.title }}">
+                                    </div>
+                                    {% endif %}
+                                    <div class="course-info">
+                                        <h3>{{ course.title }}</h3>
+                                        <div class="course-details">
+                                            <span class="course-category">{{ course.category }}</span>
+                                            <span class="course-duration">{{ course.duration }}</span>
+                                        </div>
+                                        <p class="course-description">{{ course.description[:100] }}{% if course.description|length > 100 %}...{% endif %}</p>
+                                        <a href="{{ url_for('courses') }}?category={{ course.category }}" class="btn btn-outline-primary btn-sm">Learn More</a>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-courses-message">
+                            <p>Stay tuned for our upcoming courses!</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="view-all-courses">
+                <a href="{{ url_for('courses') }}" class="btn btn-primary">View All Courses</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="calculators-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Cosmic Calculators</h2>
+            <p>Discover your cosmic blueprint</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="calculator-card">
+                    <div class="calculator-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Natal Chart Calculator</h3>
+                    <p>Explore your astrological blueprint and planetary influences</p>
+                    <a href="{{ url_for('natal_chart') }}" class="btn btn-primary">Calculate Now</a>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="calculator-card">
+                    <div class="calculator-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Human Design Calculator</h3>
+                    <p>Discover your energetic type and inner authority</p>
+                    <a href="{{ url_for('human_design') }}" class="btn btn-primary">Calculate Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="membership-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Membership Options</h2>
+            <p>Join our cosmic community</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="membership-card platinum">
+                    <h3>Platinum</h3>
+                    <div class="price">$29.99<span>/month</span></div>
+                    <ul class="features">
+                        <li>Access to all recorded sessions</li>
+                        <li>15% discount on all courses</li>
+                        <li>Monthly group meditation</li>
+                        <li>Access to community forum</li>
+                    </ul>
+                    <a href="{{ url_for('memberships') }}" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="membership-card electrum">
+                    <div class="premium-badge">Premium</div>
+                    <h3>Electrum</h3>
+                    <div class="price">$49.99<span>/month</span></div>
+                    <ul class="features">
+                        <li>All Platinum benefits</li>
+                        <li>25% discount on all courses</li>
+                        <li>One free 1-on-1 session per month</li>
+                        <li>Priority registration for retreats</li>
+                        <li>Exclusive monthly masterclass</li>
+                    </ul>
+                    <a href="{{ url_for('memberships') }}" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Transformational Journeys</h2>
+            <p>Stories from our cosmic community</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">The Human Design reading transformed my understanding of myself and how I interact with the world. I finally feel aligned with my true purpose.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Sarah M.</div>
+                        <div class="author-title">Projector Type</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">The Cosmic Abundance course helped me transform my relationship with money. Within months, I manifested my dream job and financial freedom.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Michael K.</div>
+                        <div class="author-title">Course Graduate</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="testimonial-text">The spiritual retreat was life-changing. I connected deeply with myself and others in the most beautiful setting. I returned home completely renewed.</p>
+                    <div class="testimonial-author">
+                        <div class="author-name">Elena T.</div>
+                        <div class="author-title">Retreat Participant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

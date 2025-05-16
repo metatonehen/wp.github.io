@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% block title %}Group Sessions & Retreats | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Group Sessions & Retreats</h1>
+        <p>Collective healing and transformation experiences</p>
+    </div>
+</section>
+
+<section class="cube-portal-section">
+    <div class="container">
+        <div class="sacred-geometry-container" style="position: relative; margin-bottom: 40px;">
+            <div class="flower-of-life" style="position: absolute; max-width: 350px; left: 50%; transform: translateX(-50%);">
+                <img src="{{ url_for('static', filename='images/flower_of_life_enhanced.svg') }}" alt="Flower of Life">
+            </div>
+            <div class="metatron-cube-large" style="position: relative; z-index: 2;">
+                <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube">
+            
+            <div class="portal-vertices">
+                <a href="#meditations" class="portal-vertex vertex-1">
+                    <span>Meditations <i class="fas fa-om"></i></span>
+                </a>
+                <a href="#retreats" class="portal-vertex vertex-2">
+                    <span>Retreats <i class="fas fa-mountain"></i></span>
+                </a>
+                <a href="#workshops" class="portal-vertex vertex-3">
+                    <span>Workshops <i class="fas fa-users"></i></span>
+                </a>
+                <a href="#ceremonies" class="portal-vertex vertex-4">
+                    <span>Ceremonies <i class="fas fa-fire"></i></span>
+                </a>
+                <a href="#healing-circles" class="portal-vertex vertex-5">
+                    <span>Healing Circles <i class="fas fa-hands"></i></span>
+                </a>
+                <a href="#online-events" class="portal-vertex vertex-6">
+                    <span>Online Events <i class="fas fa-laptop"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="meditations" class="group-category">
+    <div class="container">
+        <div class="category-header">
+            <h2><i class="fas fa-om"></i> Group Meditations</h2>
+            <p>Join our collective consciousness experiences</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="event-card upcoming">
+                    <div class="event-badge">Upcoming</div>
+                    <div class="event-image">
+                        <!-- Event image would be here -->
+                    </div>
+                    <div class="event-content">
+                        <h3>Full Moon Meditation Circle</h3>
+                        <div class="event-meta">
+                            <span><i class="far fa-calendar-alt"></i> Next Full Moon</span>
+                            <span><i class="far fa-clock"></i> 8:00 PM - 9:30 PM EST</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Online via Zoom</span>
+                        </div>
+                        <p>Join us for a powerful full moon meditation to release what no longer serves you and manifest your deepest intentions.</p>
+                        <div class="event-pricing">
+                            <p class="price">$25 <span>/ person</span></p>
+                            <p class="member-price">$15 <span>/ for members</span></p>
+                        </div>
+                        <a href="#" class="btn btn-primary">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="event-card recorded">
+                    <div class="event-badge">Recorded</div>
+                    <div class="event-image">
+                        <!-- Event image would be here -->
+                    </div>
+                    <div class="event-content">
+                        <h3>Cosmic Consciousness Meditation Series</h3>
+                        <p>A collection of guided meditations connecting you to planetary energies and star systems.</p>
+                        <div class="session-list">
+                            <div class="session-item">
+                                <span class="session-title">Lyra Star System Connection</span>
+                                <span class="session-duration">45 min</span>
+                            </div>
+                            <div class="session-item">
+                                <span class="session-title">Sirius Energy Activation</span>
+                                <span class="session-duration">37 min</span>
+                            </div>
+                            <div class="session-item">
+                                <span class="session-title">Pleiadian Healing</span>
+                                <span class="session-duration">52 min</span>
+                            </div>
+                            <div class="session-item">
+                                <span class="session-title">Orion's Belt Alignment</span>
+                                <span class="session-duration">41 min</span>
+                            </div>
+                        </div>
+                        <div class="event-pricing">
+                            <p class="price">$49 <span>/ full series</span></p>
+                            <p class="member-price">Free <span>for Electrum members</span></p>
+                        </div>
+                        <a href="#" class="btn btn-primary">Access Series</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="retreats" class="group-category">
+    <div class="container">
+        <div class="category-header">
+            <h2><i class="fas fa-mountain"></i> Spiritual Retreats</h2>
+            <p>Immersive experiences in sacred locations</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="retreat-card">
+                    <div class="retreat-image">
+                        <!-- Retreat image would be here -->
+                        <div class="retreat-badge">Featured</div>
+                    </div>
+                    <div class="retreat-content">
+                        <h3>Sacred Geometry Immersion</h3>
+                        <div class="retreat-meta">
+                            <span><i class="far fa-calendar-alt"></i> June 15-22, 2023</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Sedona, Arizona</span>
+                            <span><i class="fas fa-users"></i> 12 Participants Max</span>
+                        </div>
+                        <p>A 7-day immersion into the energies of Sedona's vortexes, combined with sacred geometry teachings and meditations.</p>
+                        <div class="retreat-highlights">
+                            <h4>Highlights</h4>
+                            <ul>
+                                <li>Daily sacred geometry practices</li>
+                                <li>Vortex meditation experiences</li>
+                                <li>Sound healing ceremonies</li>
+                                <li>Luxury eco-accommodations</li>
+                                <li>Organic plant-based meals</li>
+                            </ul>
+                        </div>
+                        <div class="retreat-pricing">
+                            <p class="price">From $2,495 <span>/ person</span></p>
+                            <p class="member-price">10% discount for members</p>
+                        </div>
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="retreat-card">
+                    <div class="retreat-image">
+                        <!-- Retreat image would be here -->
+                    </div>
+                    <div class="retreat-content">
+                        <h3>Cosmic Connection Retreat</h3>
+                        <div class="retreat-meta">
+                            <span><i class="far fa-calendar-alt"></i> August 8-14, 2023</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Maui, Hawaii</span>
+                            <span><i class="fas fa-users"></i> 10 Participants Max</span>
+                        </div>
+                        <p>Connect with stellar energies through nightly stargazing, astrology, and cosmic channeling practices.</p>
+                        <div class="retreat-highlights">
+                            <h4>Highlights</h4>
+                            <ul>
+                                <li>Guided stargazing sessions</li>
+                                <li>Astrology workshops</li>
+                                <li>Stellar channeling</li>
+                                <li>Oceanfront accommodations</li>
+                                <li>Farm-to-table cuisine</li>
+                            </ul>
+                        </div>
+                        <div class="retreat-pricing">
+                            <p class="price">From $2,995 <span>/ person</span></p>
+                            <p class="member-price">10% discount for members</p>
+                        </div>
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="retreat-card">
+                    <div class="retreat-image">
+                        <!-- Retreat image would be here -->
+                    </div>
+                    <div class="retreat-content">
+                        <h3>Inner Temple Retreat</h3>
+                        <div class="retreat-meta">
+                            <span><i class="far fa-calendar-alt"></i> October 3-9, 2023</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Bali, Indonesia</span>
+                            <span><i class="fas fa-users"></i> 14 Participants Max</span>
+                        </div>
+                        <p>A deep journey into the temples of Bali and your inner sacred space through meditation and ceremony.</p>
+                        <div class="retreat-highlights">
+                            <h4>Highlights</h4>
+                            <ul>
+                                <li>Sacred temple visits</li>
+                                <li>Water purification ceremonies</li>
+                                <li>Balinese energy healing</li>
+                                <li>Luxury villa accommodations</li>
+                                <li>Traditional Balinese cuisine</li>
+                            </ul>
+                        </div>
+                        <div class="retreat-pricing">
+                            <p class="price">From $2,795 <span>/ person</span></p>
+                            <p class="member-price">10% discount for members</p>
+                        </div>
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional group session categories would follow the same pattern -->
+
+<section class="retreat-call-to-action">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h2>Transform in Community</h2>
+                <p>Group experiences accelerate personal growth through collective energy and shared intention. Join us for a transformative journey.</p>
+            </div>
+            <div class="col-lg-5">
+                <a href="#retreats" class="btn btn-lg btn-primary">Explore All Retreats</a>
+                <a href="#meditations" class="btn btn-lg btn-outline-light">Join a Meditation</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Panel - METATONEHEN{% endblock %}
+
+{% block content %}
+<section class="admin-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="admin-header">
+                    <h1>Admin Panel</h1>
+                    <div class="admin-actions">
+                        <div class="dropdown me-2">
+                            <button class="btn btn-success dropdown-toggle" type="button" id="editPagesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Editar Páginas
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="editPagesDropdown">
+                                <li><h6 class="dropdown-header">Edición Directa (Recomendado)</h6></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='') }}">Página Principal</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='courses') }}">Cursos</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='sessions') }}">Sesiones 1-a-1</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='group_sessions') }}">Sesiones de Grupo</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='memberships') }}">Membresías</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='about') }}">Acerca de</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('enter_edit_mode', page_path='contact') }}">Contacto</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><h6 class="dropdown-header">Editor Tradicional</h6></li>
+                                <li><a class="dropdown-item" href="{{ url_for('visual_editor') }}">Editor Visual</a></li>
+                            </ul>
+                        </div>
+                        <a href="{{ url_for('media_manager') }}" class="btn btn-primary me-2">Gestor de Archivos</a>
+                        <a href="{{ url_for('page_manager') }}" class="btn btn-primary me-2">Editor de Páginas</a>
+                        <a href="{{ url_for('admin_logout') }}" class="btn btn-outline-primary">Logout</a>
+                    </div>
+                </div>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <div class="admin-tabs">
+                    <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="content-tab" data-bs-toggle="tab" data-bs-target="#content" type="button" role="tab" aria-controls="content" aria-selected="true">
+                                Main Content
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="vertices-tab" data-bs-toggle="tab" data-bs-target="#vertices" type="button" role="tab" aria-controls="vertices" aria-selected="false">
+                                Metatron Vertices
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="adminTabContent">
+                    <!-- Main Content Tab -->
+                    <div class="tab-pane fade show active" id="content" role="tabpanel" aria-labelledby="content-tab">
+                        <div class="content-editor">
+                            <form action="{{ url_for('save_content') }}" method="POST">
+                                <div class="card editor-card">
+                                    <div class="card-header">
+                                        <h3>Hero Section</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="hero_title" class="form-label">Main Title</label>
+                                            <input type="text" class="form-control" id="hero_title" name="hero_title" value="{{ content.hero_title }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="hero_subtitle" class="form-label">Greek Subtitle</label>
+                                            <input type="text" class="form-control" id="hero_subtitle" name="hero_subtitle" value="{{ content.hero_subtitle }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="hero_text" class="form-label">Hero Description</label>
+                                            <textarea class="form-control" id="hero_text" name="hero_text" rows="3">{{ content.hero_text }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card editor-card mt-4">
+                                    <div class="card-header">
+                                        <h3>Section Titles</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="courses_title" class="form-label">Courses Title</label>
+                                                <input type="text" class="form-control" id="courses_title" name="courses_title" value="{{ content.courses_title }}">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="courses_description" class="form-label">Courses Description</label>
+                                                <input type="text" class="form-control" id="courses_description" name="courses_description" value="{{ content.courses_description }}">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sessions_title" class="form-label">Sessions Title</label>
+                                                <input type="text" class="form-control" id="sessions_title" name="sessions_title" value="{{ content.sessions_title }}">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sessions_description" class="form-label">Sessions Description</label>
+                                                <input type="text" class="form-control" id="sessions_description" name="sessions_description" value="{{ content.sessions_description }}">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="retreats_title" class="form-label">Group Sessions Title</label>
+                                                <input type="text" class="form-control" id="retreats_title" name="retreats_title" value="{{ content.retreats_title }}">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="retreats_description" class="form-label">Group Sessions Description</label>
+                                                <input type="text" class="form-control" id="retreats_description" name="retreats_description" value="{{ content.retreats_description }}">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="membership_title" class="form-label">Membership Title</label>
+                                                <input type="text" class="form-control" id="membership_title" name="membership_title" value="{{ content.membership_title }}">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="membership_description" class="form-label">Membership Description</label>
+                                                <input type="text" class="form-control" id="membership_description" name="membership_description" value="{{ content.membership_description }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions mt-4">
+                                    <button type="submit" class="btn btn-primary">Save Content</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Vertices Tab -->
+                    <div class="tab-pane fade" id="vertices" role="tabpanel" aria-labelledby="vertices-tab">
+                        <div class="vertices-editor">
+                            <form action="{{ url_for('save_vertices') }}" method="POST">
+                                <div class="card editor-card">
+                                    <div class="card-header">
+                                        <h3>Metatron's Cube Vertices</h3>
+                                        <p class="text-muted">Edit the labels displayed at each vertex of Metatron's Cube on the home page</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="metatron-vertices-preview">
+                                            <div class="hexagon-container">
+                                                <div class="vertex-input vertex-1">
+                                                    <input type="text" class="form-control" id="vertex1" name="vertex1" value="{{ content.vertex1 }}">
+                                                </div>
+                                                <div class="vertex-input vertex-2">
+                                                    <input type="text" class="form-control" id="vertex2" name="vertex2" value="{{ content.vertex2 }}">
+                                                </div>
+                                                <div class="vertex-input vertex-3">
+                                                    <input type="text" class="form-control" id="vertex3" name="vertex3" value="{{ content.vertex3 }}">
+                                                </div>
+                                                <div class="vertex-input vertex-4">
+                                                    <input type="text" class="form-control" id="vertex4" name="vertex4" value="{{ content.vertex4 }}">
+                                                </div>
+                                                <div class="vertex-input vertex-5">
+                                                    <input type="text" class="form-control" id="vertex5" name="vertex5" value="{{ content.vertex5 }}">
+                                                </div>
+                                                <div class="vertex-input vertex-6">
+                                                    <input type="text" class="form-control" id="vertex6" name="vertex6" value="{{ content.vertex6 }}">
+                                                </div>
+                                                <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube" class="hexagon-background">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions mt-4">
+                                    <button type="submit" class="btn btn-primary">Save Vertices</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .admin-section {
+        padding: 50px 0;
+    }
+    
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .admin-tabs {
+        margin-bottom: 30px;
+    }
+    
+    .editor-card {
+        margin-bottom: 20px;
+        border: 1px solid rgba(201, 172, 72, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid rgba(201, 172, 72, 0.3);
+    }
+    
+    .card-header h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        color: #333;
+    }
+    
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .btn-primary {
+        background-color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-primary:hover {
+        background-color: #b89b3d;
+        border-color: #b89b3d;
+    }
+    
+    .btn-outline-primary {
+        color: #C9AC48;
+        border-color: #C9AC48;
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: #C9AC48;
+        color: white;
+    }
+    
+    .metatron-vertices-preview {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+    }
+    
+    .hexagon-container {
+        position: relative;
+        width: 500px;
+        height: 500px;
+    }
+    
+    .hexagon-background {
+        width: 100%;
+        height: auto;
+        opacity: 0.2;
+    }
+    
+    .vertex-input {
+        position: absolute;
+        width: 120px;
+    }
+    
+    .vertex-1 {
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .vertex-2 {
+        top: 30%;
+        right: 10%;
+    }
+    
+    .vertex-3 {
+        bottom: 30%;
+        right: 10%;
+    }
+    
+    .vertex-4 {
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .vertex-5 {
+        bottom: 30%;
+        left: 10%;
+    }
+    
+    .vertex-6 {
+        top: 30%;
+        left: 10%;
+    }
+    
+    .nav-tabs .nav-link {
+        color: #666;
+    }
+    
+    .nav-tabs .nav-link.active {
+        color: #C9AC48;
+        border-bottom-color: #C9AC48;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Enable Bootstrap tabs
+        var tabElms = document.querySelectorAll('[data-bs-toggle="tab"]');
+        tabElms.forEach(function(tabElm) {
+            tabElm.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                // Hide all tab panes
+                var tabPanes = document.querySelectorAll('.tab-pane');
+                tabPanes.forEach(function(pane) {
+                    pane.classList.remove('show', 'active');
+                });
+                
+                // Remove active class from all tabs
+                var tabs = document.querySelectorAll('.nav-link');
+                tabs.forEach(function(tab) {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-selected', 'false');
+                });
+                
+                // Activate clicked tab
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                
+                // Show target tab pane
+                var target = this.getAttribute('data-bs-target');
+                var targetPane = document.querySelector(target);
+                targetPane.classList.add('show', 'active');
+            });
+        });
+    });
+</script>
+{% endblock %}

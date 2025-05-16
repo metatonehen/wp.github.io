@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+
+{% block title %}1-on-1 Sessions | Neo Gaiam{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>1-on-1 Sessions</h1>
+        <p>Personalized guidance for your spiritual journey</p>
+    </div>
+</section>
+
+<section class="cube-portal-section">
+    <div class="container">
+        <div class="sacred-geometry-container" style="position: relative; margin-bottom: 40px;">
+            <div class="flower-of-life" style="position: absolute; max-width: 350px; left: 50%; transform: translateX(-50%);">
+                <img src="{{ url_for('static', filename='images/flower_of_life_enhanced.svg') }}" alt="Flower of Life">
+            </div>
+            <div class="metatron-cube-large" style="position: relative; z-index: 2;">
+                <img src="{{ url_for('static', filename='images/metatron_cube_enhanced.svg') }}" alt="Metatron's Cube">
+            
+            <div class="portal-vertices">
+                <a href="#coaching" class="portal-vertex vertex-1">
+                    <span>Coaching <i class="fas fa-user-friends"></i></span>
+                </a>
+                <a href="#astrology" class="portal-vertex vertex-2">
+                    <span>Astrology <i class="fas fa-star"></i></span>
+                </a>
+                <a href="#human-design" class="portal-vertex vertex-3">
+                    <span>Human Design <i class="fas fa-dna"></i></span>
+                </a>
+                <a href="#constellations" class="portal-vertex vertex-4">
+                    <span>Constellations <i class="fas fa-sitemap"></i></span>
+                </a>
+                <a href="#healing" class="portal-vertex vertex-5">
+                    <span>Healing <i class="fas fa-hand-holding-heart"></i></span>
+                </a>
+                <a href="#meditation" class="portal-vertex vertex-6">
+                    <span>Meditation <i class="fas fa-om"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="astrology" class="session-category">
+    <div class="container">
+        <div class="category-header">
+            <h2><i class="fas fa-star"></i> Astrology Sessions</h2>
+            <p>Discover your cosmic blueprint and navigate life with celestial guidance</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="practitioner-card">
+                    <div class="practitioner-image">
+                        <!-- Practitioner image would be here -->
+                    </div>
+                    <div class="practitioner-content">
+                        <h3>Maria Celestia</h3>
+                        <p class="practitioner-title">Senior Astrologer</p>
+                        <p class="practitioner-bio">Maria has over 15 years of experience in evolutionary astrology, helping clients understand their soul's journey through planetary aspects.</p>
+                        <div class="session-packages">
+                            <div class="package silver">
+                                <h4>Argentum</h4>
+                                <p class="price">$120 <span>/ 60 minutes</span></p>
+                                <ul>
+                                    <li>Natal Chart Reading</li>
+                                    <li>Current Transits Analysis</li>
+                                    <li>6-Month Forecast</li>
+                                    <li>PDF Summary</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Aurum</h4>
+                                <p class="price">$220 <span>/ 90 minutes</span></p>
+                                <ul>
+                                    <li>Everything in Argentum</li>
+                                    <li>Relationship Synastry</li>
+                                    <li>Career & Purpose Guidance</li>
+                                    <li>Recorded Session</li>
+                                    <li>45-min Follow-up Call</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Book Session</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="practitioner-card">
+                    <div class="practitioner-image">
+                        <!-- Practitioner image would be here -->
+                    </div>
+                    <div class="practitioner-content">
+                        <h3>Jonathan Starweaver</h3>
+                        <p class="practitioner-title">Vedic Astrologer</p>
+                        <p class="practitioner-bio">Jonathan specializes in Vedic astrology, offering insights into your karma, dharma, and spiritual evolution through ancient techniques.</p>
+                        <div class="session-packages">
+                            <div class="package silver">
+                                <h4>Argentum</h4>
+                                <p class="price">$110 <span>/ 60 minutes</span></p>
+                                <ul>
+                                    <li>Vedic Birth Chart Analysis</li>
+                                    <li>Dasha Periods Explanation</li>
+                                    <li>Remedial Measures</li>
+                                    <li>PDF Summary</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Aurum</h4>
+                                <p class="price">$195 <span>/ 90 minutes</span></p>
+                                <ul>
+                                    <li>Everything in Argentum</li>
+                                    <li>Nakshatras Deep Dive</li>
+                                    <li>Jyotish Gemstone Recommendation</li>
+                                    <li>Recorded Session</li>
+                                    <li>30-min Follow-up Call</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Book Session</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="human-design" class="session-category">
+    <div class="container">
+        <div class="category-header">
+            <h2><i class="fas fa-dna"></i> Human Design Sessions</h2>
+            <p>Discover your energetic blueprint and authentic decision-making strategy</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="practitioner-card">
+                    <div class="practitioner-image">
+                        <!-- Practitioner image would be here -->
+                    </div>
+                    <div class="practitioner-content">
+                        <h3>Sophia Lumina</h3>
+                        <p class="practitioner-title">Human Design Analyst</p>
+                        <p class="practitioner-bio">Sophia helps clients understand their Human Design chart to live in alignment with their true nature and fulfill their purpose.</p>
+                        <div class="session-packages">
+                            <div class="package silver">
+                                <h4>Argentum</h4>
+                                <p class="price">$150 <span>/ 75 minutes</span></p>
+                                <ul>
+                                    <li>Type & Strategy Analysis</li>
+                                    <li>Authority & Decision-Making</li>
+                                    <li>Defined & Undefined Centers</li>
+                                    <li>PDF Chart & Summary</li>
+                                </ul>
+                            </div>
+                            <div class="package gold">
+                                <h4>Aurum</h4>
+                                <p class="price">$275 <span>/ 2 sessions</span></p>
+                                <ul>
+                                    <li>Everything in Argentum</li>
+                                    <li>Gates & Channels Analysis</li>
+                                    <li>Profile & Incarnation Cross</li>
+                                    <li>Variable Analysis</li>
+                                    <li>90-min Initial + 60-min Follow-up</li>
+                                    <li>Recorded Sessions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Book Session</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional session categories would follow the same pattern -->
+
+<section class="session-booking-info">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h2>How Booking Works</h2>
+                <div class="booking-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Choose Your Practitioner</h4>
+                            <p>Browse our expert practitioners and select one who resonates with you.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Select Your Package</h4>
+                            <p>Choose between Argentum (Silver) and Aurum (Gold) packages based on your needs.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Book Your Time</h4>
+                            <p>Select an available time slot from the practitioner's calendar.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Prepare for Your Session</h4>
+                            <p>You'll receive preparation instructions via email before your session.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="membership-promo">
+                    <h3>Members Save 15-25%</h3>
+                    <p>Join our membership program and receive discounts on all 1-on-1 sessions plus many other benefits.</p>
+                    <a href="{{ url_for('memberships') }}" class="btn btn-primary">Explore Memberships</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
