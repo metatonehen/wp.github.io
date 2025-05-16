@@ -1,0 +1,32 @@
+{
+  "booking": {
+    "title": "Reserva Tu Sesión",
+    "description": "Completa el formulario a continuación para programar tu sesión de {{service}}",
+    "personalInfo": "Información Personal",
+    "fullName": "Nombre Completo",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "selectDate": "Seleccionar Fecha",
+    "selectTime": "Seleccionar Hora",
+    "serviceLevel": "Nivel de Servicio",
+    "standard": "Estándar",
+    "aurum": "Aurum",
+    "argentum": "Argentum",
+    "astrologyInfo": "Información Astrológica",
+    "birthDate": "Fecha de Nacimiento",
+    "birthTime": "Hora de Nacimiento (si la conoces)",
+    "birthPlace": "Lugar de Nacimiento",
+    "questionForReading": "Preguntas Específicas para la Lectura",
+    "additionalInfo": "Información Adicional",
+    "confirmBooking": "Confirmar Reserva",
+    "processing": "Procesando...",
+    "summary": {
+      "title": "Resumen de la Reserva",
+      "duration": "Duración",
+      "price": "Precio",
+      "whatToExpect": "Qué esperar",
+      "expectationDescription": "Después de la reserva, recibirás un correo electrónico de confirmación con detalles sobre tu sesión y cualquier preparación necesaria. Tu practicante se conectará contigo a la hora programada.",
+      "reschedule": "¿Necesitas reprogramar? Puedes modificar tu reserva hasta 24 horas antes de tu sesión."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+/**
+ * NEO GAIAM - Flower of Life Styles
+ */
+
+.neogaiam-flower-of-life {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 20px auto;
+}
+
+.flower-of-life-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.neogaiam-flower-of-life:hover .flower-of-life-circle {
+  opacity: 1;
+}
+
+@keyframes flower-of-life-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: var(--opacity, 0.7); 
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: calc(var(--opacity, 0.7) + 0.2); 
+  }
+}

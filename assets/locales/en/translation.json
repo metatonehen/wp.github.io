@@ -1,0 +1,32 @@
+{
+  "booking": {
+    "title": "Book Your Session",
+    "description": "Complete the form below to schedule your {{service}} session",
+    "personalInfo": "Personal Information",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "serviceLevel": "Service Level",
+    "standard": "Standard",
+    "aurum": "Aurum",
+    "argentum": "Argentum",
+    "astrologyInfo": "Astrological Information",
+    "birthDate": "Birth Date",
+    "birthTime": "Birth Time (if known)",
+    "birthPlace": "Birth Place",
+    "questionForReading": "Specific Questions for Reading",
+    "additionalInfo": "Additional Information",
+    "confirmBooking": "Confirm Booking",
+    "processing": "Processing...",
+    "summary": {
+      "title": "Booking Summary",
+      "duration": "Duration",
+      "price": "Price",
+      "whatToExpect": "What to expect",
+      "expectationDescription": "After booking, you'll receive a confirmation email with details about your session and any preparation required. Your practitioner will connect with you at the scheduled time.",
+      "reschedule": "Need to reschedule? You can modify your booking up to 24 hours before your session."
+    }
+  }
+}

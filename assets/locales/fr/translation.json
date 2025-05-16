@@ -1,0 +1,30 @@
+{
+  "booking": {
+    "personalInfo": "Informations Personnelles",
+    "fullName": "Nom Complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "selectDate": "Sélectionner une Date",
+    "selectTime": "Sélectionner une Heure",
+    "serviceLevel": "Niveau de Service",
+    "standard": "Standard",
+    "aurum": "Aurum",
+    "argentum": "Argentum",
+    "astrologyInfo": "Informations Astrologiques",
+    "birthDate": "Date de Naissance",
+    "birthTime": "Heure de Naissance (si connue)",
+    "birthPlace": "Lieu de Naissance",
+    "questionForReading": "Questions Spécifiques pour la Lecture",
+    "additionalInfo": "Informations Supplémentaires",
+    "confirmBooking": "Confirmer la Réservation",
+    "processing": "Traitement en cours...",
+    "summary": {
+      "title": "Résumé de la Réservation",
+      "duration": "Durée",
+      "price": "Prix",
+      "whatToExpect": "À quoi s'attendre",
+      "expectationDescription": "Après la réservation, vous recevrez un email de confirmation avec les détails de votre session et toute préparation nécessaire. Votre praticien se connectera avec vous à l'heure programmée.",
+      "reschedule": "Besoin de reprogrammer? Vous pouvez modifier votre réservation jusqu'à 24 heures avant votre session."
+    }
+  }
+}

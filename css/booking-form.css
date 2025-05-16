@@ -1,0 +1,170 @@
+/**
+ * NEO GAIAM - Booking Form Styles
+ */
+
+.neogaiam-booking-form {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(99, 102, 241, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+@media (min-width: 768px) {
+  .booking-form {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.booking-form-section {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin-bottom: 20px;
+}
+
+.booking-form-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #6366f1;
+}
+
+.booking-form-subheading {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 15px 0 10px;
+  color: #8b5cf6;
+}
+
+.form-field-wrapper {
+  margin-bottom: 15px;
+}
+
+.form-field-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-field-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.form-field-textarea {
+  min-height: 100px;
+}
+
+.form-field-error {
+  color: #f43f5e;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.required-mark {
+  color: #f43f5e;
+}
+
+.booking-form-submit {
+  background-color: #6366f1;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.booking-form-submit:hover {
+  background-color: #4f46e5;
+}
+
+.summary-section {
+  position: sticky;
+  top: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-item-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.summary-item-value {
+  font-weight: 500;
+}
+
+.booking-form-text {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.booking-form-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  z-index: 1000;
+}
+
+.message-success {
+  background-color: #10b981;
+  color: white;
+}
+
+.message-error {
+  background-color: #f43f5e;
+  color: white;
+}
+
+.message-info {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.message-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.message-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.message-close:hover {
+  opacity: 1;
+}

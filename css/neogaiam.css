@@ -1,0 +1,82 @@
+/**
+ * NEO GAIAM - Main Styles
+ * 
+ * Common styles for all NEO GAIAM components
+ */
+
+:root {
+  --cosmic-primary: #6366f1;
+  --cosmic-secondary: #8b5cf6;
+  --cosmic-accent: #f43f5e;
+  --cosmic-tertiary: #14b8a6;
+  --cosmic-quaternary: #f59e0b;
+  --cosmic-bg-dark: #0f0c29;
+  --cosmic-bg-medium: #302b63;
+  --cosmic-bg-light: #24243e;
+  --cosmic-text-light: #ffffff;
+  --cosmic-text-muted: rgba(255, 255, 255, 0.7);
+  --cosmic-border-light: rgba(255, 255, 255, 0.2);
+  --cosmic-shadow-light: rgba(255, 255, 255, 0.1);
+}
+
+.cosmic-bg {
+  background: linear-gradient(to bottom, var(--cosmic-bg-dark), var(--cosmic-bg-medium), var(--cosmic-bg-light));
+  color: var(--cosmic-text-light);
+}
+
+/* Common component container styles */
+.neogaiam-component {
+  margin: 20px 0;
+  position: relative;
+}
+
+/* Utility classes */
+.cosmic-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--cosmic-primary), var(--cosmic-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.cosmic-subheading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: var(--cosmic-secondary);
+  margin-bottom: 15px;
+}
+
+.cosmic-card {
+  background-color: rgba(99, 102, 241, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cosmic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+.cosmic-button {
+  background-color: var(--cosmic-primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cosmic-button:hover {
+  background-color: var(--cosmic-secondary);
+}
+
+/* Component-specific styles will be in their respective CSS files */
